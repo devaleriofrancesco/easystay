@@ -64,7 +64,6 @@
 
 <script lang="ts">
 import { RouterLink } from 'vue-router'
-import { initFlowbite } from 'flowbite'
 
 import menu from '@/router/menu.json'
 
@@ -74,9 +73,6 @@ export default {
     return {
       menu: menu,
     }
-  },
-  mounted() {
-    initFlowbite()
   },
 }
 </script>

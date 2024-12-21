@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import HomeCarousel from '@/components/home/HomeCarousel.vue'
 </script>
 
 <template>
   <main>
-    <h1>Home</h1>
+    <HomeCarousel />
   </main>
 </template>
