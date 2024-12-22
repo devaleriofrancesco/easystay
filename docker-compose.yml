@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - vue-app
+      - postgres-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/easystay
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  vue-app:
+    build:
+      context: ./easystay-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+
+  postgres-db:
+    image: postgres:17.2-alpine
+    environment:
+      POSTGRES_DB: easystay
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"

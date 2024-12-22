@@ -1,0 +1,12 @@
+target
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+mvnw
+mvnw.cmd
+.idea
+.vscode
+*.swp
+*.swo
+*.DS_Store
