@@ -1,6 +1,6 @@
 # Dockerfile for Spring Boot project
-LABEL authors="devaleriofrancesco"
 FROM maven:3.9.9-eclipse-temurin-23-alpine AS build
+LABEL authors="devaleriofrancesco"
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
