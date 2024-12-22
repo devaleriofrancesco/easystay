@@ -6,5 +6,9 @@
   {
     "name": "Camere & Suites",
     "path": "/about"
+  },
+  {
+    "name": "Prenota ora",
+    "path": "/book"
   }
 ]
