@@ -1,6 +1,6 @@
 import menu from './menu.json'
 
-interface MenuItem {
+export interface MenuItem {
   name: string
   path: string
   class?: string
