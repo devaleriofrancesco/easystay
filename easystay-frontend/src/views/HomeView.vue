@@ -1,6 +1,17 @@
 <template>
   <main>
     <ImageSlider :images="images" />
+    <div>
+      <h1>Welcome to the Hotel</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc
+        consectetur ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec nunc nec
+        nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec nunc
+        nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec
+        nunc nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam
+        nec nunc nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies.
+      </p>
+    </div>
   </main>
 </template>
 

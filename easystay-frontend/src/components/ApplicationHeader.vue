@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top position-fixed w-100">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img
@@ -15,18 +15,18 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav gap-2">
-            <li v-for="item in menu" :key="item.path" class="nav-item">
+            <li v-for="item in menu" :key="item.path" class="nav-item" :class="item.class ?? ''">
               <RouterLink :to="item.path" class="nav-link">{{ item.name }}</RouterLink>
             </li>
           </ul>
+        </div>
+        <div class="d-none d-md-block">
+          <RouterLink :to="bookMenu.path" class="btn btn-cta">{{ bookMenu.name }}</RouterLink>
         </div>
       </div>
     </nav>
@@ -35,21 +35,22 @@
 
 <script lang="ts">
 import { RouterLink } from 'vue-router'
-
-import menu from '@/router/menu.json'
+import { getAllMenuItems, getMenuItemByPath } from '@/router/menu.ts'
 
 export default {
   components: { RouterLink },
-  data() {
-    return {
-      menu: menu,
-    }
+  computed: {
+    menu() {
+      return getAllMenuItems()
+    },
+    bookMenu() {
+      return getMenuItemByPath('/book')!
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .nav-item {
   border: 2px solid #35565f;
   border-radius: 5px;
@@ -65,4 +66,12 @@ li .router-link-active {
   color: white;
 }
 
+.btn-cta {
+  background-color: #35565f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 20px;
+}
 </style>
