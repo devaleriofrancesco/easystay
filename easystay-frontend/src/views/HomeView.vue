@@ -1,48 +1,66 @@
 <template>
   <main>
     <ImageSlider :images="images" />
-    <div>
-      <h1>Welcome to the Hotel</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc
-        consectetur ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec nunc nec
-        nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec nunc
-        nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam nec
-        nunc nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies. Nullam
-        nec nunc nec nunc ultricies ultricies. Nullam nec nunc nec nunc ultricies ultricies.
-      </p>
+    <div class="container mt-5">
+      <hr />
+      <div class="row">
+        <div class="col-5">
+          <h1>EasyStay - la scelta semplice per un soggiorno indimenticabile.</h1>
+          <hr />
+          <p>Lo stile italiano dell’ospitalità alle porte di Bari.</p>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5">
+          <p><strong>Benvenuti a EasyStay.</strong></p>
+          <p>
+            <strong
+              >Nel cuore di Bari, il nostro hotel è il luogo perfetto per chi cerca un’esperienza di
+              soggiorno unica, dove il comfort si unisce all’eleganza.</strong
+            >
+          </p>
+          <p>
+            Circondati da un’atmosfera accogliente e raffinata, potrete rilassarvi nelle nostre
+            camere curate nei minimi dettagli, pensate per soddisfare ogni vostra esigenza. Che
+            siate in viaggio per lavoro o per piacere, il EasyStay è il punto di partenza ideale per
+            scoprire le meraviglie di Bari. Approfittate dei nostri servizi esclusivi e lasciatevi
+            coccolare dal nostro staff, sempre pronto a rendere il vostro soggiorno davvero
+            indimenticabile.
+          </p>
+          <p>Prenotate ora e preparatevi a vivere momenti di relax, lusso e autenticità.</p>
+        </div>
+      </div>
     </div>
   </main>
 </template>
 
 <script lang="ts">
-  import ImageSlider from '@/components/ImageSlider.vue'
-  import type { Image } from '@/interfaces/Image.ts'
+import ImageSlider from '@/components/ImageSlider.vue'
+import type { Image } from '@/interfaces/Image.ts'
 
-  export default {
-    components: {
-      ImageSlider,
-    },
-    data() {
-      return {
-        images: <Image[]> [
-          {
-            src: 'https://image-tc.galaxy.tf/wijpeg-z3e5ko7480vw6p0paqsuh7l7/1-homepage.jpg?width=1920',
-            title: 'Image 1',
-            description: 'Description 1',
-          },
-          {
-            src: 'https://image-tc.galaxy.tf/wijpeg-2eng663e2pw1raqzcxpdhqym/cosmohotelpalace-16-simonabrunoph-suite.jpg?width=1920',
-            title: 'Image 2',
-            description: 'Description 2',
-          },
-          {
-            src: 'https://image-tc.galaxy.tf/wijpeg-fi5usdgc3yeyu6ozlbgiq3k3/cosmohotelpalace-7-simonabrunoph-classic-double-room.jpg?width=1920',
-            title: 'Image 3',
-            description: 'Description 3',
-          },
-        ]
-      }
-    },
-  }
+export default {
+  components: {
+    ImageSlider,
+  },
+  data() {
+    return {
+      images: <Image[]>[
+        {
+          src: 'https://image-tc.galaxy.tf/wijpeg-z3e5ko7480vw6p0paqsuh7l7/1-homepage.jpg?width=1920',
+          title: 'Image 1',
+          description: 'Description 1',
+        },
+        {
+          src: 'https://image-tc.galaxy.tf/wijpeg-2eng663e2pw1raqzcxpdhqym/cosmohotelpalace-16-simonabrunoph-suite.jpg?width=1920',
+          title: 'Image 2',
+          description: 'Description 2',
+        },
+        {
+          src: 'https://image-tc.galaxy.tf/wijpeg-fi5usdgc3yeyu6ozlbgiq3k3/cosmohotelpalace-7-simonabrunoph-classic-double-room.jpg?width=1920',
+          title: 'Image 3',
+          description: 'Description 3',
+        },
+      ],
+    }
+  },
+}
 </script>
