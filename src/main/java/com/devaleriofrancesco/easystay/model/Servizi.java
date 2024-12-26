@@ -1,21 +1,25 @@
 package com.devaleriofrancesco.easystay.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "servizi")
+@Table(name = "servizi", uniqueConstraints = @UniqueConstraint(columnNames = "nome"))
 public class Servizi {
 
     @Id
     @GeneratedValue
     @Column(name = "id_servizio")
     private int id;
+    @Column(nullable = false, unique = true)
     private String nome;
     private int qty;
     private double prezzoAddizionale;
     @ManyToMany(mappedBy = "servizi")
+    @JsonIgnore
     private List<RoomType> roomTypes;
 
     public int getId() {

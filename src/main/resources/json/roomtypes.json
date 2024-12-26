@@ -1,0 +1,222 @@
+[
+  {
+    "nome": "Comfort Single Room",
+    "descrizione": "La Comfort Single Room, arredata con stile moderno ed essenziale, sintetizza praticità e funzionalità. \n\nOffre un accogliente letto alla francese da 130 cm, più grande del letto singolo, per garantire agli ospiti un riposo al massimo della comodità e un bagno dotato di vasca o doccia.",
+    "prezzo": 60.0,
+    "metriQuadri": 22,
+    "numeroAdulti": 1,
+    "numeroBambini": 0,
+    "galleriaImmagini": [
+      {
+        "path_immagine": "single-room-1.jpg",
+        "posizione": 1
+      },
+      {
+        "path_immagine": "single-room-2.jpg",
+        "posizione": 2
+      },
+      {
+        "path_immagine": "single-room-3.jpg",
+        "posizione": 3
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Letto alla francese",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "TV",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Wi-Fi",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      }
+    ]
+  },
+  {
+    "nome": "Classic Double Room",
+    "descrizione": "La Classic Double Room è pensata per chi cerca una soluzione dal design moderno e confortevole. La camera doppia, luminosa e ariosa, offre un letto matrimoniale da 160 cm, un bagno con vasca o doccia e un’impeccabile attenzione ai dettagli.",
+    "prezzo": 100.0,
+    "metriQuadri": 22,
+    "numeroAdulti": 2,
+    "numeroBambini": 0,
+    "galleriaImmagini": [
+      {
+        "path_immagine": "double-room-1.jpg",
+        "posizione": 1
+      },
+      {
+        "path_immagine": "double-room-2.jpg",
+        "posizione": 2
+      },
+      {
+        "path_immagine": "double-room-3.jpg",
+        "posizione": 3
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Letto matrimoniale",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "TV",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Wi-Fi",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Minibar",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      }
+    ]
+  },
+  {
+    "nome": "Classic Twin Room",
+    "descrizione": "La Classic Twin Room, pensata per chi desidera condividere gli spazi, offre la comodità di due letti singoli in un’atmosfera accogliente e confortevole e un bagno dotato di vasca o doccia",
+    "prezzo": 100.0,
+    "metriQuadri": 22,
+    "numeroAdulti": 2,
+    "numeroBambini": 0,
+    "galleriaImmagini": [
+      {
+        "path_immagine": "twin-room-1.jpg",
+        "posizione": 1
+      },
+      {
+        "path_immagine": "twin-room-2.jpg",
+        "posizione": 2
+      },
+      {
+        "path_immagine": "twin-room-3.jpg",
+        "posizione": 3
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Letto singolo",
+        "qty": "2",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "TV",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Wi-Fi",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Minibar",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      }
+    ]
+  },
+  {
+    "nome": "Classic Triple Room",
+    "descrizione": "Colleghi di lavoro che desiderano condividere una camera, amici in vacanza, un piccolo nucleo familiare in visita a Milano. La Classic Triple Room è la sistemazione perfetta per regalare il giusto spazio a ogni ospite, dotata di bagno con vasca o doccia.",
+    "prezzo": 150.0,
+    "metriQuadri": 30,
+    "numeroAdulti": 3,
+    "numeroBambini": 0,
+    "galleriaImmagini": [
+      {
+        "path_immagine": "triple-room-1.jpg",
+        "posizione": 1
+      },
+      {
+        "path_immagine": "triple-room-2.jpg",
+        "posizione": 2
+      },
+      {
+        "path_immagine": "triple-room-3.jpg",
+        "posizione": 3
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Letto singolo",
+        "qty": "3",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "TV",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Wi-Fi",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Minibar",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      }
+    ]
+  },
+  {
+    "nome": "Family Room",
+    "descrizione": "Ampie e accoglienti, le Family Room sono costituite dalla combinazione di due camere Classic comunicanti, una con letto matrimoniale e l’altra con due letti singoli, entrambe con proprio bagno dotato di vasca o doccia.\n\n",
+    "prezzo": 300.0,
+    "metriQuadri": 15,
+    "numeroAdulti": 2,
+    "numeroBambini": 2,
+    "galleriaImmagini": [
+      {
+        "path_immagine": "family-room-1.jpg",
+        "posizione": 1
+      },
+      {
+        "path_immagine": "family-room-2.jpg",
+        "posizione": 2
+      },
+      {
+        "path_immagine": "family-room-3.jpg",
+        "posizione": 3
+      }
+    ],
+    "servizi": [
+      {
+        "nome": "Letto matrimoniale",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Letto singolo",
+        "qty": "2",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "TV",
+        "qty": "2",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Wi-Fi",
+        "qty": "1",
+        "prezzoAddizionale": 0.0
+      },
+      {
+        "nome": "Minibar",
+        "qty": "2",
+        "prezzoAddizionale": 0.0
+      }
+    ]
+  }
+]

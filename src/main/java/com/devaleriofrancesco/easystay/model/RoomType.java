@@ -1,5 +1,6 @@
 package com.devaleriofrancesco.easystay.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,12 +14,14 @@ public class RoomType {
     @Column(name = "id_tipo_stanza")
     private int id;
     private String nome;
+    @Column(columnDefinition = "TEXT")
     private String descrizione;
     private double prezzo;
     private int metriQuadri;
     private int numeroAdulti;
     private int numeroBambini;
     @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<GalleriaImmagini> galleriaImmagini;
     @ManyToMany
     @JoinTable(
