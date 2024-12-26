@@ -2,9 +2,11 @@ package com.devaleriofrancesco.easystay.service;
 
 import com.devaleriofrancesco.easystay.model.GalleriaImmagini;
 import com.devaleriofrancesco.easystay.model.RoomType;
+import com.devaleriofrancesco.easystay.model.RoomTypeServizi;
 import com.devaleriofrancesco.easystay.model.Servizi;
 import com.devaleriofrancesco.easystay.repository.GalleriaImmaginiRepository;
 import com.devaleriofrancesco.easystay.repository.RoomTypeRepository;
+import com.devaleriofrancesco.easystay.repository.RoomTypeServiziRepository;
 import com.devaleriofrancesco.easystay.repository.ServiziRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,14 +19,17 @@ import java.util.List;
 @Service
 public class RoomTypeService {
     private final RoomTypeRepository roomTypeRepository;
-    private final ServiziRepository serviziRepository;
+    private final RoomTypeServiziRepository roomTypeServiziRepository;
     private final GalleriaImmaginiRepository galleryRepository;
+    private final ServiziRepository serviziRepository;
 
-    public RoomTypeService(RoomTypeRepository roomTypeRepository, ServiziRepository serviziRepository, GalleriaImmaginiRepository galleryRepository) {
+    public RoomTypeService(RoomTypeRepository roomTypeRepository, RoomTypeServiziRepository roomTypeServiziRepository, GalleriaImmaginiRepository galleryRepository, ServiziRepository serviziRepository) {
         this.roomTypeRepository = roomTypeRepository;
-        this.serviziRepository = serviziRepository;
+        this.roomTypeServiziRepository = roomTypeServiziRepository;
         this.galleryRepository = galleryRepository;
+        this.serviziRepository = serviziRepository;
     }
+
 
     public List<RoomType> findAll() {
         return roomTypeRepository.findAll();
@@ -52,20 +57,29 @@ public class RoomTypeService {
         for (RoomType roomType : roomTypes) {
 
             // Persist servizi first
-            List<Servizi> serviziList = roomType.getServizi();
+            List<RoomTypeServizi> serviziList = roomType.getRoomTypeServizi();
             if (serviziList != null) {
-                for (Servizi servizio : serviziList) {
+                for (RoomTypeServizi roomTypeServizio : serviziList) {
+                    Servizi servizio = roomTypeServizio.getServizio();
                     Servizi existingServizio = serviziRepository.findFirstByNome(servizio.getNome());
                     if (existingServizio == null) {
                         serviziRepository.save(servizio);
                     } else {
-                        servizio.setId(existingServizio.getId());
+                        roomTypeServizio.setServizio(existingServizio);
                     }
                 }
             }
 
             // Persist room type
             roomTypeRepository.save(roomType);
+
+            // Persist roomTypeServizi
+            if (serviziList != null) {
+                for (RoomTypeServizi roomTypeServizio : serviziList) {
+                    roomTypeServizio.setRoomType(roomType);
+                    roomTypeServiziRepository.save(roomTypeServizio);
+                }
+            }
 
             // Persist galleries
             List<GalleriaImmagini> galleries = roomType.getGalleriaImmagini();

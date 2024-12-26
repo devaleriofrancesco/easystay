@@ -20,21 +20,27 @@
         "posizione": 3
       }
     ],
-    "servizi": [
+    "roomTypeServizi": [
       {
-        "nome": "Letto alla francese",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto alla francese",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "TV",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "TV",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Wi-Fi",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Wi-Fi",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       }
     ]
   },
@@ -59,26 +65,34 @@
         "posizione": 3
       }
     ],
-    "servizi": [
+    "roomTypeServizi": [
       {
-        "nome": "Letto matrimoniale",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto matrimoniale",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "TV",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "TV",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Wi-Fi",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Wi-Fi",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Minibar",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Minibar",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       }
     ]
   },
@@ -103,26 +117,34 @@
         "posizione": 3
       }
     ],
-    "servizi": [
+    "roomTypeServizi": [
       {
-        "nome": "Letto singolo",
-        "qty": "2",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto singolo",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 2
       },
       {
-        "nome": "TV",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "TV",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Wi-Fi",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Wi-Fi",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Minibar",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Minibar",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       }
     ]
   },
@@ -147,26 +169,34 @@
         "posizione": 3
       }
     ],
-    "servizi": [
+    "roomTypeServizi": [
       {
-        "nome": "Letto singolo",
-        "qty": "3",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto singolo",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 3
       },
       {
-        "nome": "TV",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "TV",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Wi-Fi",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Wi-Fi",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Minibar",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Minibar",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       }
     ]
   },
@@ -191,31 +221,41 @@
         "posizione": 3
       }
     ],
-    "servizi": [
+    "roomTypeServizi": [
       {
-        "nome": "Letto matrimoniale",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto matrimoniale",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Letto singolo",
-        "qty": "2",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Letto singolo",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 2
       },
       {
-        "nome": "TV",
-        "qty": "2",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "TV",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 2
       },
       {
-        "nome": "Wi-Fi",
-        "qty": "1",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Wi-Fi",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 1
       },
       {
-        "nome": "Minibar",
-        "qty": "2",
-        "prezzoAddizionale": 0.0
+        "servizio": {
+          "nome": "Minibar",
+          "prezzoAddizionale": 0.0
+        },
+        "qty": 2
       }
     ]
   }

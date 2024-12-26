@@ -1,6 +1,7 @@
 package com.devaleriofrancesco.easystay.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -23,13 +24,9 @@ public class RoomType {
     @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<GalleriaImmagini> galleriaImmagini;
-    @ManyToMany
-    @JoinTable(
-            name = "tipo_stanza_servizi",
-            joinColumns = @JoinColumn(name = "id_tipo_stanza"),
-            inverseJoinColumns = @JoinColumn(name = "id_servizio")
-    )
-    private List<Servizi> servizi;
+    @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonProperty("servizi")
+    private List<RoomTypeServizi> roomTypeServizi;
 
     public int getId() {
         return id;
@@ -95,11 +92,11 @@ public class RoomType {
         this.galleriaImmagini = galleriaImmagini;
     }
 
-    public List<Servizi> getServizi() {
-        return servizi;
+    public List<RoomTypeServizi> getRoomTypeServizi() {
+        return roomTypeServizi;
     }
 
-    public void setServizi(List<Servizi> servizi) {
-        this.servizi = servizi;
+    public void setRoomTypeServizi(List<RoomTypeServizi> roomTypeServizi) {
+        this.roomTypeServizi = roomTypeServizi;
     }
 }

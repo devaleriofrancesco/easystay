@@ -1,6 +1,5 @@
 package com.devaleriofrancesco.easystay.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -18,9 +17,9 @@ public class Servizi {
     private String nome;
     private int qty;
     private double prezzoAddizionale;
-    @ManyToMany(mappedBy = "servizi")
+    @OneToMany(mappedBy = "servizio", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private List<RoomType> roomTypes;
+    private List<RoomTypeServizi> roomTypeServizi;
 
     public int getId() {
         return id;
@@ -54,11 +53,11 @@ public class Servizi {
         this.prezzoAddizionale = prezzoAddizionale;
     }
 
-    public List<RoomType> getRoomTypes() {
-        return roomTypes;
+    public List<RoomTypeServizi> getRoomTypeServizi() {
+        return roomTypeServizi;
     }
 
-    public void setRoomTypes(List<RoomType> roomTypes) {
-        this.roomTypes = roomTypes;
+    public void setRoomTypeServizi(List<RoomTypeServizi> roomTypeServizi) {
+        this.roomTypeServizi = roomTypeServizi;
     }
 }

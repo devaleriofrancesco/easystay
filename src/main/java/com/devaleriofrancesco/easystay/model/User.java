@@ -1,5 +1,6 @@
 package com.devaleriofrancesco.easystay.model;
 
+import com.devaleriofrancesco.easystay.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -16,9 +17,9 @@ public class User {
     private String cognome;
     private String email;
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "id_ruolo")
-    private Role ruolo;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ruolo")
+    private UserRoleEnum ruolo;
     @PrePersist
     protected void onCreate() {
         dataCreazione = LocalDateTime.now();
@@ -65,12 +66,16 @@ public class User {
         this.password = password;
     }
 
-    public Role getRuolo() {
+    public UserRoleEnum getRuolo() {
         return ruolo;
     }
 
-    public void setRuolo(Role ruolo) {
+    public void setRuolo(UserRoleEnum ruolo) {
         this.ruolo = ruolo;
+    }
+
+    public boolean isAdmin() {
+        return UserRoleEnum.ADMIN.equals(ruolo);
     }
 
     public LocalDateTime getDataCreazione() {
