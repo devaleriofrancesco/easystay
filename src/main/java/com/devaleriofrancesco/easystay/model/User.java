@@ -2,87 +2,72 @@ package com.devaleriofrancesco.easystay.model;
 
 import com.devaleriofrancesco.easystay.model.enums.UserRoleEnum;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "utenti")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue
     @Column(name = "id_utente")
     private Integer id;
+    @Column(nullable = false)
     private String nome;
+    @Column(nullable = false)
     private String cognome;
+    @Column(unique = true, length = 100, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     @Column(name = "ruolo")
     private UserRoleEnum ruolo;
-    @PrePersist
-    protected void onCreate() {
-        dataCreazione = LocalDateTime.now();
-    }
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
     private LocalDateTime dataCreazione;
 
-    public Integer getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(ruolo.name()));
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public String getEmail() {
+    @Override
+    public String getUsername() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public UserRoleEnum getRuolo() {
-        return ruolo;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setRuolo(UserRoleEnum ruolo) {
-        this.ruolo = ruolo;
-    }
-
-    public boolean isAdmin() {
-        return UserRoleEnum.ADMIN.equals(ruolo);
-    }
-
-    public LocalDateTime getDataCreazione() {
-        return dataCreazione;
-    }
-
-    public void setDataCreazione(LocalDateTime dataCreazione) {
-        this.dataCreazione = dataCreazione;
-    }
 }
