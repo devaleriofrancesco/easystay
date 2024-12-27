@@ -15,7 +15,6 @@ public class Servizi {
     private int id;
     @Column(nullable = false, unique = true)
     private String nome;
-    private int qty;
     private double prezzoAddizionale;
     @OneToMany(mappedBy = "servizio", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
@@ -35,14 +34,6 @@ public class Servizi {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
     }
 
     public double getPrezzoAddizionale() {

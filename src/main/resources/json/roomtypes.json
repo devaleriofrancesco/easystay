@@ -20,7 +20,7 @@
         "posizione": 3
       }
     ],
-    "roomTypeServizi": [
+    "servizi": [
       {
         "servizio": {
           "nome": "Letto alla francese",
@@ -65,7 +65,7 @@
         "posizione": 3
       }
     ],
-    "roomTypeServizi": [
+    "servizi": [
       {
         "servizio": {
           "nome": "Letto matrimoniale",
@@ -117,7 +117,7 @@
         "posizione": 3
       }
     ],
-    "roomTypeServizi": [
+    "servizi": [
       {
         "servizio": {
           "nome": "Letto singolo",
@@ -169,7 +169,7 @@
         "posizione": 3
       }
     ],
-    "roomTypeServizi": [
+    "servizi": [
       {
         "servizio": {
           "nome": "Letto singolo",
@@ -221,7 +221,7 @@
         "posizione": 3
       }
     ],
-    "roomTypeServizi": [
+    "servizi": [
       {
         "servizio": {
           "nome": "Letto matrimoniale",
