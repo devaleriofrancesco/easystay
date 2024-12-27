@@ -11,5 +11,9 @@
     "name": "Prenota ora",
     "path": "/book",
     "class": "d-block d-sm-none"
+  },
+  {
+    "name": "Login",
+    "path": "/login"
   }
 ]

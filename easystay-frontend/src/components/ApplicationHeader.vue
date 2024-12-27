@@ -65,13 +65,4 @@ li .router-link-active {
   background-color: #35565f;
   color: white;
 }
-
-.btn-cta {
-  background-color: #35565f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 20px;
-}
 </style>
