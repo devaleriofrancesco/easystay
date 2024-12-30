@@ -28,10 +28,11 @@ public class AuthService {
                         request.getPassword()
                 )
         );
-        UserDetails user = userService.loadUserByUsername(request.getEmail());
+        User user = (User) userService.loadUserByUsername(request.getEmail());
         var jwtToken = jwtService.generateToken(user.getUsername());
         return AuthResponse.builder()
                 .token(jwtToken)
+                .user(user)
                 .build();
     }
 
@@ -46,6 +47,7 @@ public class AuthService {
         String jwtToken = jwtService.generateToken(user.getUsername());
         return AuthResponse.builder()
                 .token(jwtToken)
+                .user(user)
                 .build();
     }
 

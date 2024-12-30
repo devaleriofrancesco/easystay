@@ -13,17 +13,6 @@ public class EasyStayApplication {
         SpringApplication.run(EasyStayApplication.class, args);
     }
 
-    // CORS configuration
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost", "http://localhost:5173");
-            }
-        };
-    }
-
     // expose static assets folder to the web
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
