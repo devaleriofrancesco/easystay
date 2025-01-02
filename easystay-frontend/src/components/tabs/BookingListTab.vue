@@ -6,7 +6,12 @@
     :aria-labelledby="`${tab.id}-list`"
   >
     <div v-if="bookings.length" class="booking-cards-wrapper">
-      <BookingCard :booking="booking" v-for="booking in bookings" :key="booking.id" />
+      <BookingCard
+        @delete-booking="deleteBookingAction"
+        :booking="booking"
+        v-for="booking in bookings"
+        :key="booking.id"
+      />
     </div>
     <div v-else>
       <p class="text-center">Nessuna prenotazione presente.</p>
@@ -18,7 +23,7 @@
 import type { Tab } from '@/interfaces/tab.ts'
 import type { Booking } from '@/interfaces/booking.ts'
 import { onMounted, ref } from 'vue'
-import { getBookings } from '@/services/bookingService.ts'
+import { deleteBooking, getBookings } from '@/services/bookingService.ts'
 import showToast from '@/services/toaster.ts'
 import BookingCard from '@/components/BookingCard.vue'
 
@@ -45,8 +50,20 @@ export default {
         console.error('Failed to fetch bookings:', error)
       }
     }
+
+    const deleteBookingAction = async (booking: Booking) => {
+      try {
+        await deleteBooking(booking.id.toString())
+        bookings.value = bookings.value.filter((b) => b.id !== booking.id)
+        showToast('Prenotazione cancellata con successo', 'success')
+      } catch (error) {
+        showToast('Errore durante la cancellazione della prenotazione', 'error')
+        console.error('Failed to delete booking:', error)
+      }
+    }
+
     onMounted(fetchBookings)
-    return { bookings, fetchBookings }
+    return { bookings, fetchBookings, deleteBookingAction }
   },
 }
 </script>

@@ -8,7 +8,7 @@
       </p>
       <div class="d-flex flex-row justify-content-between">
         <a href="#" class="btn btn-primary">Modifica</a>
-        <a href="#" class="btn btn-danger">Cancella</a>
+        <a @click.prevent="deleteBooking" class="btn btn-danger">Cancella</a>
       </div>
     </div>
   </div>
@@ -37,6 +37,11 @@ export default {
   methods: {
     formatDate(date: string) {
       return new Date(date).toLocaleDateString()
+    },
+    deleteBooking() {
+      if (confirm('Sei sicuro di voler cancellare questa prenotazione?')) {
+        this.$emit('delete-booking', this.booking)
+      }
     },
   },
 }
