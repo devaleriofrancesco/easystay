@@ -25,8 +25,11 @@
             </li>
           </ul>
         </div>
-        <div class="d-none d-md-block">
-          <RouterLink :to="bookMenu.path" class="btn btn-cta">{{ bookMenu.name }}</RouterLink>
+        <div v-if="!user.isLoggedIn" class="d-none d-md-block">
+          <RouterLink :to="loginMenu.path" class="btn btn-cta">{{ loginMenu.name }}</RouterLink>
+        </div>
+        <div v-else class="d-none d-md-block">
+          <RouterLink :to="profileMenu.path" class="btn btn-cta">{{ profileMenu.name }}</RouterLink>
         </div>
       </div>
     </nav>
@@ -36,6 +39,7 @@
 <script lang="ts">
 import { RouterLink } from 'vue-router'
 import { getAllMenuItems, getMenuItemByPath } from '@/router/menu.ts'
+import { useUsers } from '@/stores/user.ts'
 
 export default {
   components: { RouterLink },
@@ -43,9 +47,17 @@ export default {
     menu() {
       return getAllMenuItems()
     },
-    bookMenu() {
-      return getMenuItemByPath('/book')!
+    loginMenu() {
+      return getMenuItemByPath('/login')!
     },
+    profileMenu() {
+      return getMenuItemByPath('/profilo')!
+    },
+  },
+  data() {
+    return {
+      user: useUsers(),
+    }
   },
 }
 </script>

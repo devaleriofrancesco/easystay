@@ -1,7 +1,9 @@
 <template>
-  <ApplicationHeader />
-  <RouterView />
-  <ApplicationFooter />
+  <div class="page-container">
+    <ApplicationHeader />
+    <RouterView />
+    <ApplicationFooter />
+  </div>
 </template>
 
 <script lang="ts">
@@ -21,6 +23,16 @@ export default {
 <style lang="scss">
 .main-container {
   margin-top: 80px;
+}
+
+.page-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 .btn-cta {

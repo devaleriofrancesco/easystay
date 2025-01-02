@@ -9,11 +9,16 @@
   },
   {
     "name": "Prenota ora",
-    "path": "/book",
-    "class": "d-block d-sm-none"
+    "path": "/book"
   },
   {
     "name": "Login",
-    "path": "/login"
+    "path": "/login",
+    "class": "d-block d-sm-none"
+  },
+  {
+    "name": "Profilo",
+    "path": "/profilo",
+    "class": "d-block d-sm-none"
   }
 ]

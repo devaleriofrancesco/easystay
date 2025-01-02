@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import type { User } from '@/interfaces/user.ts'
+import { useUsers } from '@/stores/user.ts'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,12 +32,36 @@ const router = createRouter({
         title: 'Login',
       },
       component: () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/profilo',
+      name: 'profilo',
+      meta: {
+        title: 'Profilo',
+        restricted: true
+      },
+      component: () => import('../views/ProfileVIew.vue'),
     }
   ],
 })
 
 router.beforeEach((to, from, next) => {
   document.title = `EasyStay - ${to.meta.title}` || 'EasyStay'
+
+  const userData = useUsers()
+
+  // redirect to profile page if logged in and trying to access login page
+  if (to.name === 'login' && userData.isLoggedIn) {
+    next({ name: 'profilo' })
+    return
+  }
+
+  // redirect to login page if not logged in and trying to access a restricted page
+  if (to.meta.restricted && !userData.isLoggedIn) {
+    next({ name: 'login' })
+    return
+  }
+
   next()
 })
 

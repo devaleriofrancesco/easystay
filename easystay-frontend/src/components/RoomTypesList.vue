@@ -2,13 +2,19 @@
   <div class="container">
     <div class="row" v-for="room in roomTypes" :key="room.id">
       <div class="col-5">
-        <ImageSlider :slider-id="`roomtype-slider-${room.id}`" :images="images(room)" :show-controls="true" :show-indicators="false" carousel-image-height="unset" />
+        <ImageSlider
+          :slider-id="`roomtype-slider-${room.id}`"
+          :images="images(room)"
+          :show-controls="true"
+          :show-indicators="false"
+          carousel-image-height="unset"
+        />
       </div>
       <div class="col-2"></div>
       <div class="col-5">
         <h3>{{ room.nome }}</h3>
         <p>Metri Quadri: {{ room.metriQuadri }}</p>
-        <p>{{sumPostiLetto(room)}} posti letto</p>
+        <p>{{ sumPostiLetto(room) }} posti letto</p>
         <p>Servizi:</p>
         <ul class="list-group mb-2">
           <li class="list-group-item" v-for="servizio in room.servizi" :key="servizio.servizio.id">
@@ -25,11 +31,9 @@
 
 <script lang="ts">
 import { onMounted, ref } from 'vue'
-import { getRoomTypes } from '@/services/roomTypeService.ts'
+import { getRoomTypeImages, getRoomTypes } from '@/services/roomTypeService.ts'
 import type { RoomType } from '@/interfaces/roomtype.ts'
 import ImageSlider from '@/components/ImageSlider.vue'
-import type { Image } from '@/interfaces/Image.ts'
-import { sum } from '@antfu/utils'
 
 export default {
   name: 'RoomTypesList',
@@ -47,16 +51,11 @@ export default {
     return { roomTypes, fetchRoomTypes }
   },
   methods: {
-    sum,
-    images(roomType: RoomType) {
-      return roomType.galleriaImmagini.map((image) => (<Image>{
-        src: `${import.meta.env.VITE_BACKEND_IMAGES_URL}/roomtypes/${image.path_immagine}`,
-        title: '',
-        description: '',
-      }))
-    },
     sumPostiLetto(roomType: RoomType) {
       return roomType.numeroAdulti + roomType.numeroBambini
+    },
+    images(roomType: RoomType) {
+      return getRoomTypeImages(roomType)
     },
   },
 }
