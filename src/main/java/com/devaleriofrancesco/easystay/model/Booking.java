@@ -1,6 +1,7 @@
 package com.devaleriofrancesco.easystay.model;
 
 import com.devaleriofrancesco.easystay.model.enums.StatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class Booking {
     private Room stanza;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
+    @JsonIgnore
     private User cliente;
 }
 

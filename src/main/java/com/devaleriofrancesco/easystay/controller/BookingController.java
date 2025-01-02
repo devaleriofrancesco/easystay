@@ -15,12 +15,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/user")
-public class UserController {
+@RequestMapping("/api/user/bookings")
+public class BookingController {
 
     private final BookingService bookingService;
 
-    @GetMapping("/mybookings")
+    @GetMapping("")
     public ResponseEntity<List<Booking>> myBookings() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
