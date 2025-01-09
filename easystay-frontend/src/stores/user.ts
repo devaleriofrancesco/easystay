@@ -4,6 +4,7 @@ import type { AuthResponse, User } from '@/interfaces/user.ts'
 import axiosInstance from '@/services/axios.ts'
 import showToast from '@/services/toaster.ts'
 import router from '@/router'
+import { AxiosError } from 'axios'
 
 export const useUsers = defineStore('users', {
   state: () => ({
@@ -36,6 +37,18 @@ export const useUsers = defineStore('users', {
       } catch (error) {
         console.error('Error registering user:', error)
         throw error
+      }
+    },
+    async updateUser(user: User, password: string | null = null) {
+      try {
+        const { data } = await axiosInstance.put<AuthResponse>(`/user`, { ...user, password })
+        this.userData = data.user
+        showToast('Profilo aggiornato', 'success')
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          showToast(error.response?.data.detail, 'error')
+        }
+        console.log('Error updating user:', error)
       }
     },
     async logout() {
