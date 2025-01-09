@@ -4,9 +4,12 @@ import com.devaleriofrancesco.easystay.model.AuthRequest;
 import com.devaleriofrancesco.easystay.model.AuthResponse;
 import com.devaleriofrancesco.easystay.model.RegisterRequest;
 import com.devaleriofrancesco.easystay.service.AuthService;
+import com.devaleriofrancesco.easystay.validation.ValidationGroups;
 import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +30,7 @@ public class AuthController {
 
     // response for register with token
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest registerRequest) {
+    public ResponseEntity<AuthResponse> register(@Validated({ValidationGroups.RegisterRequestValidation.class, Default.class}) @RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(authService.register(registerRequest));
     }
 

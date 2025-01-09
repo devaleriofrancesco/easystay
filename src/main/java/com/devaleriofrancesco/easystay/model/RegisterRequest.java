@@ -1,5 +1,6 @@
 package com.devaleriofrancesco.easystay.model;
 
+import com.devaleriofrancesco.easystay.validation.ValidationGroups;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,6 @@ public class RegisterRequest {
         private String cognome;
         @NotBlank(message = "Email non valida")
         private String email;
-        @NotBlank(message = "Password deve avere uno o più caratteri")
+        @NotBlank(message = "Password deve avere uno o più caratteri", groups = {ValidationGroups.RegisterRequestValidation.class})
         private String password;
 }

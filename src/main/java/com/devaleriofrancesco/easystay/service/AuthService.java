@@ -51,4 +51,20 @@ public class AuthService {
                 .build();
     }
 
+    public AuthResponse updateUser(User currentUser, RegisterRequest registerRequest) {
+        // update user logic
+        currentUser.setNome(registerRequest.getNome());
+        currentUser.setCognome(registerRequest.getCognome());
+        currentUser.setEmail(registerRequest.getEmail());
+        if (!registerRequest.getPassword().isEmpty()) {
+            currentUser.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+        }
+        userService.save(currentUser);
+        String jwtToken = jwtService.generateToken(currentUser.getUsername());
+        return AuthResponse.builder()
+                .token(jwtToken)
+                .user(currentUser)
+                .build();
+    }
+
 }
