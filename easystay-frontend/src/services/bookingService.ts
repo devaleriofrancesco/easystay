@@ -10,17 +10,19 @@ export const getBookings = async () => {
     const response = await axiosInstance.get<Booking[]>(`/user/bookings`)
     return response.data
   } catch (error) {
-    console.error('Error fetching bookings:', error)
     throw error
   }
 }
 
 // change check-in or check-out date for a booking
-export const updateBooking = async (id: string, checkIn: string, checkOut: string) => {
+export const updateBooking = async (id: string, dataCheckIn: Date, dataCheckOut: Date) => {
   try {
-    await axiosInstance.put(`/user/bookings/${id}`, { checkIn, checkOut })
+    const response = await axiosInstance.put<Booking>(`/user/bookings/change-dates/${id}`, {
+      dataCheckIn: dataCheckIn.toISOString().slice(0, 10),
+      dataCheckOut: dataCheckOut.toISOString().slice(0, 10),
+    })
+    return response.data
   } catch (error) {
-    console.error('Error updating booking:', error)
     throw error
   }
 }

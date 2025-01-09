@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import type { User } from '@/interfaces/user.ts'
 import { useUsers } from '@/stores/user.ts'
 
 const router = createRouter({
@@ -12,7 +11,7 @@ const router = createRouter({
       component: HomeView,
       meta: {
         title: 'Home',
-      }
+      },
     },
     {
       path: '/le-nostre-camere',
@@ -38,10 +37,10 @@ const router = createRouter({
       name: 'profilo',
       meta: {
         title: 'Profilo',
-        restricted: true
+        restricted: true,
       },
       component: () => import('../views/ProfileVIew.vue'),
-    }
+    },
   ],
 })
 

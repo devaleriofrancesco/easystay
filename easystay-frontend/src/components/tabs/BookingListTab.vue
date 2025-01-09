@@ -8,6 +8,7 @@
     <div v-if="bookings.length" class="booking-cards-wrapper">
       <BookingCard
         @delete-booking="deleteBookingAction"
+        @update-booking="updateBookingAction"
         :booking="booking"
         v-for="booking in bookings"
         :key="booking.id"
@@ -23,9 +24,10 @@
 import type { Tab } from '@/interfaces/tab.ts'
 import type { Booking } from '@/interfaces/booking.ts'
 import { onMounted, ref } from 'vue'
-import { deleteBooking, getBookings } from '@/services/bookingService.ts'
+import { deleteBooking, getBookings, updateBooking } from '@/services/bookingService.ts'
 import showToast from '@/services/toaster.ts'
 import BookingCard from '@/components/BookingCard.vue'
+import { AxiosError } from 'axios'
 
 export default {
   name: 'BookingListTab',
@@ -62,8 +64,33 @@ export default {
       }
     }
 
+    const updateBookingAction = async (
+      id: number,
+      checkInDate: string,
+      checkOutDate: string,
+      closeModalCallback = () => {},
+      resetInitialValues = () => {},
+    ) => {
+      try {
+        const updatedBooking = await updateBooking(
+          id.toString(),
+          new Date(checkInDate),
+          new Date(checkOutDate),
+        )
+        const index = bookings.value.findIndex((b) => b.id === updatedBooking.id)
+        bookings.value[index] = updatedBooking
+        showToast('Prenotazione modificata con successo', 'success')
+        closeModalCallback()
+      } catch (error: unknown) {
+        if (error instanceof AxiosError) {
+          showToast(error.response?.data.detail, 'error')
+          resetInitialValues()
+        }
+      }
+    }
+
     onMounted(fetchBookings)
-    return { bookings, fetchBookings, deleteBookingAction }
+    return { bookings, fetchBookings, deleteBookingAction, updateBookingAction }
   },
 }
 </script>
