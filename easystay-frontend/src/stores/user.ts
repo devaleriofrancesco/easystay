@@ -27,16 +27,22 @@ export const useUsers = defineStore('users', {
         console.log('Error authenticating user:', error)
       }
     },
-    async register(user: User) {
+    async register(user: User, password: string) {
       try {
-        const { data } = await axiosInstance.post<AuthResponse>(`/auth/register`, user)
+        const { data } = await axiosInstance.post<AuthResponse>(`/auth/register`, {
+          ...user,
+          password,
+        })
         this.token = data.token
         this.userData = data.user
         this.isLoggedIn = true
         await router.push({ name: 'profilo' })
+        showToast('Benvenuto', 'success')
       } catch (error) {
-        console.error('Error registering user:', error)
-        throw error
+        if (error instanceof AxiosError) {
+          showToast(error.response?.data.detail, 'error')
+        }
+        console.log('Error registering user:', error)
       }
     },
     async updateUser(user: User, password: string | null = null) {

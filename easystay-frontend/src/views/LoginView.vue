@@ -5,11 +5,25 @@
       <form @submit.prevent="userStore.authenticate(email, password)">
         <div class="form-group">
           <label for="email">E-Mail</label>
-          <input type="email" v-model="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Indirizzo email">
+          <input
+            type="email"
+            required
+            v-model="email"
+            class="form-control"
+            id="email"
+            placeholder="Indirizzo email"
+          />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
+          <input
+            type="password"
+            required
+            v-model="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
         </div>
         <button type="submit" class="btn-cta mt-2">Entra</button>
         <RouterLink to="/register" class="btn-link mx-2">Registrati</RouterLink>

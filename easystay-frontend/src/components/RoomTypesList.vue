@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row" v-for="room in roomTypes" :key="room.id">
+    <div class="row" v-for="(room, index) in roomTypes" :key="room.id">
       <div class="col-5">
         <ImageSlider
           :slider-id="`roomtype-slider-${room.id}`"
@@ -23,6 +23,7 @@
         </ul>
         <p>{{ room.descrizione }}</p>
       </div>
+      <hr v-if="index !== roomTypes.length - 1" />
     </div>
   </div>
 </template>
