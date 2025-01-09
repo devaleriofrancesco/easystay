@@ -1,8 +1,10 @@
 package com.devaleriofrancesco.easystay.controller;
 
 import com.devaleriofrancesco.easystay.model.Booking;
+import com.devaleriofrancesco.easystay.model.BookingDatesRequest;
 import com.devaleriofrancesco.easystay.model.User;
 import com.devaleriofrancesco.easystay.service.BookingService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,7 +30,7 @@ public class BookingController {
 
     // Change booking check-in and check-out dates
     @PutMapping("/change-dates/{id}")
-    public ResponseEntity<Booking> changeDates(@PathVariable Integer id, @RequestBody Booking booking) {
+    public ResponseEntity<Booking> changeDates(@PathVariable Integer id, @Valid @RequestBody BookingDatesRequest booking) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         return ResponseEntity.ok(bookingService.changeDates(id, booking, user));

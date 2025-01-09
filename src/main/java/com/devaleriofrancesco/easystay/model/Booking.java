@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -18,13 +21,15 @@ public class Booking {
     @GeneratedValue
     @Column(name = "id_prenotazione")
     private int id;
-    private LocalDateTime dataCheckIn;
-    private LocalDateTime dataCheckOut;
+    private LocalDate dataCheckIn;
+    private LocalDate dataCheckOut;
     @Enumerated(EnumType.STRING)
     @Column(name = "stato_prenotazione")
     private StatusEnum statoPrenotazione;
     private double prezzoTotale;
+    @CreationTimestamp
     private LocalDateTime dataCreazione;
+    @UpdateTimestamp
     private LocalDateTime dataAggiornamento;
     @ManyToOne
     @JoinColumn(name = "numero_stanza")
