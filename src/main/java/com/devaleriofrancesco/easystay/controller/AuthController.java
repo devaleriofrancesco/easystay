@@ -8,6 +8,7 @@ import com.devaleriofrancesco.easystay.validation.ValidationGroups;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.Default;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,11 @@ public class AuthController {
     // response for register with token
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Validated({ValidationGroups.RegisterRequestValidation.class, Default.class}) @RequestBody RegisterRequest registerRequest) {
-        return ResponseEntity.ok(authService.register(registerRequest));
+        try {
+            return ResponseEntity.ok(authService.register(registerRequest));
+        } catch (DataIntegrityViolationException exception) {
+            throw new DataIntegrityViolationException("E-Mail già presente nel sistema");
+        }
     }
 
 }
