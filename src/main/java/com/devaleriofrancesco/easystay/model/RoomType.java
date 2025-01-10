@@ -13,7 +13,7 @@ public class RoomType {
     @Id
     @GeneratedValue
     @Column(name = "id_tipo_stanza")
-    private int id;
+    private Integer id;
     private String nome;
     @Column(columnDefinition = "TEXT")
     private String descrizione;
@@ -30,6 +30,15 @@ public class RoomType {
 
     public int getId() {
         return id;
+    }
+
+    public double getPrezzoCompleto() {
+        List<RoomTypeServizi> servizi = roomTypeServizi;
+        double prezzoServizi = 0;
+        for (RoomTypeServizi servizio : servizi) {
+            prezzoServizi += (servizio.getServizio().getPrezzoAddizionale() * servizio.getQty());
+        }
+        return prezzoServizi + prezzo;
     }
 
     public String getNome() {

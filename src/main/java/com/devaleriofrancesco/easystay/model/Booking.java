@@ -20,7 +20,7 @@ public class Booking {
     @Id
     @GeneratedValue
     @Column(name = "id_prenotazione")
-    private int id;
+    private Integer id;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
     @Enumerated(EnumType.STRING)

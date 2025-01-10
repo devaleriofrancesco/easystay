@@ -11,7 +11,7 @@ public class GalleriaImmagini {
     @Id
     @GeneratedValue
     @Column(name = "id_immagine")
-    private int id;
+    private Integer id;
     @Column(name = "image_path")
     @JsonProperty("path_immagine")
     private String path_immagine;

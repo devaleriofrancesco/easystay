@@ -31,4 +31,20 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("currentBookingId") Integer currentBookingId
     );
 
+    @Query("SELECT r FROM Room r " +
+            "WHERE NOT EXISTS (" +
+            "SELECT b FROM Booking b " +
+            "WHERE :checkIn < b.dataCheckOut " +
+            "AND :checkOut > b.dataCheckIn " +
+            ") " +
+            "AND r.tipoStanza = :roomType " +
+            "AND r.prenotabile = true "
+    )
+    Page<Room> findFirstAvailableRoom(
+            Pageable pageable,
+            @Param("checkIn") LocalDate checkIn,
+            @Param("checkOut") LocalDate checkOut,
+            @Param("roomType") RoomType roomType
+    );
+
 }

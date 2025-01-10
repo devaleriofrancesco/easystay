@@ -11,7 +11,7 @@ public class RoomTypeServizi {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "room_type_id")

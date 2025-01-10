@@ -2,6 +2,7 @@ package com.devaleriofrancesco.easystay.controller;
 
 import com.devaleriofrancesco.easystay.model.Booking;
 import com.devaleriofrancesco.easystay.model.BookingDatesRequest;
+import com.devaleriofrancesco.easystay.model.BookingRequest;
 import com.devaleriofrancesco.easystay.model.User;
 import com.devaleriofrancesco.easystay.service.BookingService;
 import jakarta.validation.Valid;
@@ -26,6 +27,14 @@ public class BookingController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         return ResponseEntity.ok(bookingService.findByCliente(user));
+    }
+
+    // create new booking
+    @PostMapping("")
+    public ResponseEntity<Booking> createBooking(@Valid @RequestBody BookingRequest booking) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        return ResponseEntity.ok(bookingService.createBooking(booking, user));
     }
 
     // Change booking check-in and check-out dates

@@ -2,6 +2,7 @@ package com.devaleriofrancesco.easystay.service;
 
 import com.devaleriofrancesco.easystay.model.Booking;
 import com.devaleriofrancesco.easystay.model.Room;
+import com.devaleriofrancesco.easystay.model.RoomType;
 import com.devaleriofrancesco.easystay.repository.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,6 +26,21 @@ public class RoomService {
                 newCheckOut,
                 room.getTipoStanza(),
                 oldBooking.getId()
+        );
+
+        Optional<Room> newRoom = roomPage.get().findFirst();
+        return newRoom.orElseThrow(
+                () -> new IllegalArgumentException("Non ci sono stanze disponibili per le date selezionate")
+        );
+
+    }
+
+    public Room getNewRoom(LocalDate newCheckIn, LocalDate newCheckOut, RoomType roomType) {
+        Page<Room> roomPage = roomRepository.findFirstAvailableRoom(
+                PageRequest.of(0, 1),
+                newCheckIn,
+                newCheckOut,
+                roomType
         );
 
         Optional<Room> newRoom = roomPage.get().findFirst();

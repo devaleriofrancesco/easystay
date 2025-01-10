@@ -1,9 +1,7 @@
 package com.devaleriofrancesco.easystay.service;
 
-import com.devaleriofrancesco.easystay.model.Booking;
-import com.devaleriofrancesco.easystay.model.BookingDatesRequest;
-import com.devaleriofrancesco.easystay.model.Room;
-import com.devaleriofrancesco.easystay.model.User;
+import com.devaleriofrancesco.easystay.model.*;
+import com.devaleriofrancesco.easystay.model.enums.StatusEnum;
 import com.devaleriofrancesco.easystay.repository.BookingsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,10 +15,29 @@ public class BookingService {
 
     private final BookingsRepository bookingsRepository;
     private final RoomService roomService;
+    private final RoomTypeService roomTypeService;
 
     // get all bookings by specific user
     public List<Booking> findByCliente(User cliente) {
         return bookingsRepository.findByCliente(cliente);
+    }
+
+    // create new booking
+    public Booking createBooking(BookingRequest bookingRequest, User user) {
+        Booking booking = new Booking();
+        RoomType roomType = roomTypeService.findById(bookingRequest.getRoomType());
+        if (roomType == null) {
+            throw new IllegalArgumentException("Tipo di stanza non trovato");
+        }
+
+        Room room = getNewRoom(bookingRequest.getDataCheckIn(), bookingRequest.getDataCheckOut(), roomType);
+        booking.setStanza(room);
+        booking.setDataCheckIn(bookingRequest.getDataCheckIn());
+        booking.setDataCheckOut(bookingRequest.getDataCheckOut());
+        booking.setPrezzoTotale(roomType.getPrezzoCompleto());
+        booking.setStatoPrenotazione(StatusEnum.ATTIVA);
+        booking.setCliente(user);
+        return bookingsRepository.save(booking);
     }
 
     // Change booking check-in and check-out dates
@@ -29,7 +46,7 @@ public class BookingService {
         isBookingBelongingToUser(bookingToChange, user);
         isBookingChangeable(bookingToChange, booking);
 
-        Room newRoom = getNewRoom(bookingToChange, booking.getDataCheckIn(), booking.getDataCheckOut());
+        Room newRoom = getUpdatedRoom(bookingToChange, booking.getDataCheckIn(), booking.getDataCheckOut());
         if (!newRoom.equals(bookingToChange.getStanza())) {
             bookingToChange.setStanza(newRoom);
         }
@@ -52,8 +69,12 @@ public class BookingService {
 
     }
 
+    public Room getNewRoom(LocalDate checkIn, LocalDate checkOut, RoomType roomType) {
+        return roomService.getNewRoom(checkIn, checkOut, roomType);
+    }
+
     // check if check-in and check-out dates collide with other bookings with the same room
-    public Room getNewRoom(Booking bookingToChange, LocalDate newCheckIn, LocalDate newCheckOut) {
+    public Room getUpdatedRoom(Booking bookingToChange, LocalDate newCheckIn, LocalDate newCheckOut) {
         return roomService.getNewRoom(bookingToChange, newCheckIn, newCheckOut);
     }
 
