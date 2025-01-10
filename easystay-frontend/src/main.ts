@@ -5,6 +5,7 @@ import ToastPlugin from 'vue-toast-notification'
 import 'vue-toast-notification/dist/theme-bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { setupCalendar } from 'v-calendar'
 
 import App from './App.vue'
 import router from './router'
@@ -17,5 +18,6 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(ToastPlugin)
 app.use(router)
+app.use(setupCalendar, {})
 
 app.mount('#app')

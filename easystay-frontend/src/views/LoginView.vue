@@ -2,7 +2,7 @@
   <main class="main-container">
     <div class="container mb-lg-5">
       <h1>Login</h1>
-      <form @submit.prevent="userStore.authenticate(email, password)">
+      <form @submit.prevent="authenticate">
         <div class="form-group">
           <label for="email">E-Mail</label>
           <input
@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { useUsers } from '@/stores/user.ts'
+import router from '@/router'
 
 export default {
   name: 'LoginView',
@@ -43,6 +44,11 @@ export default {
       password: '',
       userStore: useUsers(),
     }
+  },
+  methods: {
+    authenticate() {
+      this.userStore.authenticate(this.email, this.password, this.$route.query.redirect as string)
+    },
   },
 }
 </script>

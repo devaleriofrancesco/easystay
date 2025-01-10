@@ -25,6 +25,15 @@ const router = createRouter({
       component: () => import('../views/RoomsView.vue'),
     },
     {
+      path: '/book',
+      name: 'book',
+      meta: {
+        title: 'Prenota',
+        restricted: true,
+      },
+      component: () => import('../views/BookView.vue'),
+    },
+    {
       path: '/login',
       name: 'login',
       meta: {
@@ -65,7 +74,7 @@ router.beforeEach((to, from, next) => {
 
   // redirect to login page if not logged in and trying to access a restricted page
   if (to.meta.restricted && !userData.isLoggedIn) {
-    next({ name: 'login' })
+    next({ name: 'login', query: { redirect: to.fullPath } })
     return
   }
 

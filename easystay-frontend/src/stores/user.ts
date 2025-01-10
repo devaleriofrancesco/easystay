@@ -14,13 +14,13 @@ export const useUsers = defineStore('users', {
   }),
   persist: true,
   actions: {
-    async authenticate(email: string, password: string) {
+    async authenticate(email: string, password: string, redirect: string | null = null) {
       try {
         const { data } = await axiosInstance.post<AuthResponse>('/auth/token', { email, password })
         this.token = data.token
         this.userData = data.user
         this.isLoggedIn = true
-        await router.push({ name: 'profilo' })
+        await router.push({ path: redirect || '/profilo' })
         showToast('Benvenuto', 'success')
       } catch (error) {
         showToast("Errore durante l'autenticazione", 'error')

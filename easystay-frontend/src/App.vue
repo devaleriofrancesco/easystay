@@ -42,5 +42,9 @@ main {
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 20px;
+  &:hover {
+    background-color: #2a4349;
+    color: white;
+  }
 }
 </style>
