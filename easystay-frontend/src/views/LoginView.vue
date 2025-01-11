@@ -34,7 +34,6 @@
 
 <script lang="ts">
 import { useUsers } from '@/stores/user.ts'
-import router from '@/router'
 
 export default {
   name: 'LoginView',

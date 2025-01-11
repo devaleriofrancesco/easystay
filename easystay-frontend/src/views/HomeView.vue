@@ -46,18 +46,18 @@ export default {
       images: <Image[]>[
         {
           src: 'https://image-tc.galaxy.tf/wijpeg-z3e5ko7480vw6p0paqsuh7l7/1-homepage.jpg?width=1920',
-          title: 'Image 1',
-          description: 'Description 1',
+          title: 'Ingresso hotel',
+          description: 'L’ingresso dell’hotel EasyStay.',
         },
         {
           src: 'https://image-tc.galaxy.tf/wijpeg-2eng663e2pw1raqzcxpdhqym/cosmohotelpalace-16-simonabrunoph-suite.jpg?width=1920',
-          title: 'Image 2',
-          description: 'Description 2',
+          title: 'Family Room',
+          description: 'Family room con stanze comunicanti',
         },
         {
           src: 'https://image-tc.galaxy.tf/wijpeg-fi5usdgc3yeyu6ozlbgiq3k3/cosmohotelpalace-7-simonabrunoph-classic-double-room.jpg?width=1920',
-          title: 'Image 3',
-          description: 'Description 3',
+          title: 'Double Room',
+          description: 'Camera doppia con letto matrimoniale',
         },
       ],
     }

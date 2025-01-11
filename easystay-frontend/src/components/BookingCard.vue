@@ -4,7 +4,8 @@
     <div class="card-body">
       <h5 class="card-title">{{ booking.stanza.tipoStanza.nome }}</h5>
       <p class="card-text">
-        Prenotazione #{{ booking.id }} del {{ formatDate(booking.dataCreazione) }}
+        <strong>Data check-in</strong>: {{ formatDate(booking.dataCheckIn) }}<br />
+        <strong>Data check-out</strong>: {{ formatDate(booking.dataCheckOut) }}
       </p>
       <div class="d-flex flex-row justify-content-between">
         <button
