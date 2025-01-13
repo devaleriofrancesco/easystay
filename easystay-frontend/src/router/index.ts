@@ -58,6 +58,16 @@ const router = createRouter({
       },
       component: () => import('../views/ProfileVIew.vue'),
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      meta: {
+        title: 'Admin',
+        restricted: true,
+        admin: true,
+      },
+      component: () => import('../views/Admin/HomeView.vue'),
+    },
   ],
 })
 

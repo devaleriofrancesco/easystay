@@ -38,7 +38,7 @@
 
 <script lang="ts">
 import { RouterLink } from 'vue-router'
-import { getAllMenuItems, getMenuItemByPath } from '@/router/menu.ts'
+import { getAllMenuItems, getMenuItemByPath, type MenuItem } from '@/router/menu.ts'
 import { useUsers } from '@/stores/user.ts'
 
 export default {
@@ -51,7 +51,11 @@ export default {
       return getMenuItemByPath('/login')!
     },
     profileMenu() {
-      return getMenuItemByPath('/profilo')!
+      return {
+        name: 'Profilo',
+        path: useUsers().userData.ruolo === 'ROLE_ADMIN' ? '/admin' : '/profilo',
+        class: 'd-block d-sm-none',
+      } as MenuItem
     },
   },
   data() {

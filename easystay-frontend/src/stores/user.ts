@@ -20,7 +20,8 @@ export const useUsers = defineStore('users', {
         this.token = data.token
         this.userData = data.user
         this.isLoggedIn = true
-        await router.push({ path: redirect || '/profilo' })
+        const home = this.userData.ruolo === 'ROLE_ADMIN' ? 'admin' : 'profilo'
+        await router.push({ path: redirect || `/${home}` })
         showToast('Benvenuto', 'success')
       } catch (error) {
         showToast("Errore durante l'autenticazione", 'error')

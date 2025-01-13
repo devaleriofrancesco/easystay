@@ -37,6 +37,7 @@
 import type { Tab } from '@/interfaces/tab.ts'
 import BookingListTab from './tabs/BookingListTab.vue'
 import ProfileTab from './tabs/ProfileTab.vue'
+import BookingCalendarTab from './tabs/Admin/BookingCalendarTab.vue'
 import { useUsers } from '@/stores/user.ts'
 
 export default {
@@ -44,6 +45,7 @@ export default {
   components: {
     BookingListTab,
     ProfileTab,
+    BookingCalendarTab,
   },
   props: {
     tabs: {
