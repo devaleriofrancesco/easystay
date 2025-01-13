@@ -18,6 +18,5 @@ public class RegisterRequest {
         @NotBlank(message = "Email non valida")
         private String email;
         @NotBlank(message = "Password deve avere uno o più caratteri", groups = {ValidationGroups.RegisterRequestValidation.class})
-        @Min(value = 8, message = "Password deve avere almeno 8 caratteri")
         private String password;
 }

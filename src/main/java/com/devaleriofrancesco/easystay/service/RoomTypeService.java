@@ -39,8 +39,16 @@ public class RoomTypeService {
         return roomTypeRepository.findById(id).orElse(null);
     }
 
-    public RoomType save(RoomType roomType) {
+    public RoomType addRoomType(RoomType roomType) {
         return roomTypeRepository.save(roomType);
+    }
+
+    public RoomType updateRoomType(Integer id, RoomType roomType) {
+        return roomTypeRepository.save(roomType);
+    }
+
+    public void deleteRoomType(Integer id) {
+        roomTypeRepository.deleteById(id);
     }
 
     public void deleteById(Integer id) {

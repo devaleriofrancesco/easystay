@@ -17,6 +17,26 @@ public class BookingService {
     private final RoomService roomService;
     private final RoomTypeService roomTypeService;
 
+    // get all bookings
+    public List<Booking> findAll() {
+        return bookingsRepository.findAll();
+    }
+
+    // find all bookings by check-in and check-out dates
+    public List<Booking> findByCheckInAndCheckOut(LocalDate checkIn, LocalDate checkOut) {
+        return bookingsRepository.findByCheckInAndCheckOut(checkIn, checkOut);
+    }
+
+    // find all bookings by check-in, check-out dates and user full name
+    public List<Booking> findByCheckInAndCheckOut(LocalDate checkIn, LocalDate checkOut, String userFullName) {
+        return bookingsRepository.findByCheckInAndCheckOutAndUser(checkIn, checkOut, userFullName);
+    }
+
+    // get bookings by month and year
+    public List<Booking> findByMonthAndYear(Integer month, Integer year) {
+        return bookingsRepository.getByMonthAndYear(month, year);
+    }
+
     // get all bookings by specific user
     public List<Booking> findByCliente(User cliente) {
         return bookingsRepository.findByCliente(cliente);
@@ -76,6 +96,12 @@ public class BookingService {
     // check if check-in and check-out dates collide with other bookings with the same room
     public Room getUpdatedRoom(Booking bookingToChange, LocalDate newCheckIn, LocalDate newCheckOut) {
         return roomService.getNewRoom(bookingToChange, newCheckIn, newCheckOut);
+    }
+
+    // delete booking by id
+    public void deleteBooking(Integer id) {
+        Booking booking = bookingsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Prenotazione non trovata"));
+        bookingsRepository.delete(booking);
     }
 
     // delete booking by id

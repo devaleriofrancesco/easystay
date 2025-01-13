@@ -36,7 +36,6 @@ public class Booking {
     private Room stanza;
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    @JsonIgnore
     private User cliente;
 }
 
