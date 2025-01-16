@@ -39,19 +39,43 @@ public class RoomTypeService {
         return roomTypeRepository.findById(id).orElse(null);
     }
 
-    public RoomType addRoomType(RoomType roomType) {
-        return roomTypeRepository.save(roomType);
+    public RoomType addRoomType(RoomTypeRequest roomType) {
+        RoomType newRoomType = getNewRoomType();
+        newRoomType.setNome(roomType.getNome());
+        newRoomType.setDescrizione(roomType.getDescrizione());
+        newRoomType.setMetriQuadri(roomType.getMetriQuadri());
+        newRoomType.setPrezzo(roomType.getPrezzo());
+        newRoomType.setNumeroAdulti(roomType.getNumeroAdulti());
+        newRoomType.setNumeroBambini(roomType.getNumeroBambini());
+        newRoomType = roomTypeRepository.save(newRoomType);
+
+        // manage services
+        manageServices(roomType, newRoomType);
+
+        // manage images
+        manageImages(roomType, newRoomType);
+
+        return newRoomType;
     }
 
     public RoomType updateRoomType(Integer id, RoomTypeRequest roomTypeRequest) {
         RoomType roomTypeToUpdate = roomTypeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Tipo stanza non trovato"));
         roomTypeToUpdate.setNome(roomTypeRequest.getNome());
         roomTypeToUpdate.setDescrizione(roomTypeRequest.getDescrizione());
-        roomTypeToUpdate.setPrezzo(roomTypeRequest.getPrezzoCompleto());
+        roomTypeToUpdate.setPrezzo(roomTypeRequest.getPrezzo());
         roomTypeToUpdate.setNumeroAdulti(roomTypeRequest.getNumeroAdulti());
         roomTypeToUpdate.setNumeroBambini(roomTypeRequest.getNumeroBambini());
         roomTypeToUpdate.setMetriQuadri(roomTypeRequest.getMetriQuadri());
         // manage servizi
+        manageServices(roomTypeRequest, roomTypeToUpdate);
+
+        // manage images
+        manageImages(roomTypeRequest, roomTypeToUpdate);
+        roomTypeRepository.save(roomTypeToUpdate);
+        return roomTypeToUpdate;
+    }
+
+    private void manageServices(RoomTypeRequest roomTypeRequest, RoomType roomTypeToUpdate) {
         roomTypeRequest.getServizi().forEach(servizio -> {
             RoomTypeServizi roomTypeServizi = roomTypeServiziRepository.findById(servizio.getId()).orElse(null);
             if (roomTypeServizi == null) {
@@ -72,8 +96,9 @@ public class RoomTypeService {
             roomTypeServizi.setRoomType(roomTypeToUpdate);
             roomTypeServiziRepository.save(roomTypeServizi);
         });
+    }
 
-        // manage images
+    private void manageImages(RoomTypeRequest roomTypeRequest, RoomType roomTypeToUpdate) {
         List<GalleriaImmagini> images = roomTypeRequest.getGalleriaImmagini();
         for (GalleriaImmagini image : images) {
             GalleriaImmagini imageToUpdate = galleryRepository.findById(image.getId()).orElse(null);
@@ -106,8 +131,13 @@ public class RoomTypeService {
             imageToUpdate.setRoomType(roomTypeToUpdate);
             galleryRepository.save(imageToUpdate);
         }
-        roomTypeRepository.save(roomTypeToUpdate);
-        return roomTypeToUpdate;
+    }
+
+    public RoomType getNewRoomType() {
+        RoomType roomType = new RoomType();
+        roomType.setRoomTypeServizi(List.of());
+        roomType.setGalleriaImmagini(List.of());
+        return roomType;
     }
 
     public void deleteRoomType(Integer id) {

@@ -19,7 +19,7 @@ public class AdminRoomTypeController {
 
     // add room type
     @PostMapping
-    public ResponseEntity<RoomType> addRoomType(@RequestBody RoomType roomType) {
+    public ResponseEntity<RoomType> addRoomType(@Valid @RequestBody RoomTypeRequest roomType) {
         return ResponseEntity.ok(roomTypeService.addRoomType(roomType));
     }
 
@@ -34,6 +34,12 @@ public class AdminRoomTypeController {
     public ResponseEntity<Void> deleteRoomType(@PathVariable Integer id) {
         roomTypeService.deleteRoomType(id);
         return ResponseEntity.ok().build();
+    }
+
+    // get empty object
+    @GetMapping("/new")
+    public ResponseEntity<RoomType> getNewRoomType() {
+        return ResponseEntity.ok(roomTypeService.getNewRoomType());
     }
 
 }

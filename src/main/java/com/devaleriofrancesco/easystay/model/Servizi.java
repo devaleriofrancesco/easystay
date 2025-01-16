@@ -12,7 +12,7 @@ public class Servizi {
     @Id
     @GeneratedValue
     @Column(name = "id_servizio")
-    private Integer id;
+    private Integer id = 0;
     @Column(nullable = false, unique = true)
     private String nome;
     private double prezzoAddizionale;

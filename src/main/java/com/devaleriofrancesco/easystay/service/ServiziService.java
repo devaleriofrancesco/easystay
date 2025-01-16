@@ -24,10 +24,13 @@ public class ServiziService {
 
     public List<RoomTypeServizi> getAllServicesForRoomType(Integer id) {
         RoomType roomType = roomTypeService.findById(id);
+        List<Servizi> availableServices;
         if (roomType == null) {
-            throw new IllegalArgumentException("Tipo stanza non trovato");
+            availableServices = serviziRepository.findAll();
+        }else {
+            availableServices =  serviziRepository.findAllServicesNotAssociatedWithRoomType(roomType);
         }
-        List<Servizi> availableServices =  serviziRepository.findAllServicesNotAssociatedWithRoomType(roomType);
+
         List<RoomTypeServizi> roomTypeServices = new java.util.ArrayList<>(List.of());
         availableServices.forEach(servizio -> {
             RoomTypeServizi roomTypeServizi = new RoomTypeServizi();

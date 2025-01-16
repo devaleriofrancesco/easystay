@@ -17,10 +17,9 @@ public class RoomTypeRequest {
     @Min(value = 1, message = "Numero posti letto deve essere maggiore di 0")
     private int numeroPostiLetto;
     @Min(value = 1, message = "Prezzo completo deve essere maggiore di 0")
-    private double prezzoCompleto;
+    private double prezzo;
     @Min(value = 1, message = "Numero adulti deve essere maggiore di 0")
     private int numeroAdulti;
-    @Min(value = 1, message = "Numero bambini deve essere maggiore di 0")
     private int numeroBambini;
     @Min(value = 1, message = "Metri quadri deve essere maggiore di 0")
     private int metriQuadri;
