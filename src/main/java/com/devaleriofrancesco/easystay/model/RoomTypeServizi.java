@@ -25,7 +25,7 @@ public class RoomTypeServizi {
     private int qty;
 
     // getters and setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
