@@ -21,6 +21,11 @@ export default {
           name: 'Prenotazioni',
           component: 'BookingCalendarTab',
         },
+        {
+          id: 'roomTypes',
+          name: 'Tipi di stanze',
+          component: 'RoomTypesTab',
+        },
       ],
     }
   },

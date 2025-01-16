@@ -47,4 +47,15 @@ main {
     color: white;
   }
 }
+.btn-cta-mini {
+  background-color: #35565f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  &:hover {
+    background-color: #2a4349;
+    color: white;
+  }
+}
 </style>

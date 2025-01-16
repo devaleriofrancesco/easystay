@@ -1,6 +1,7 @@
 import type { RoomType } from '@/interfaces/roomtype.ts'
 import axiosInstance from '@/services/axios.ts'
 import type { Image } from '@/interfaces/Image.ts'
+import type { SelectorImage } from '@/components/ImageSelector.vue'
 
 export const getRoomTypes = async () => {
   try {
@@ -21,5 +22,26 @@ export const getRoomTypeImages = (roomType: RoomType) => {
         description: '',
         posizione: image.posizione,
       },
+  )
+}
+
+// update roomType
+export const updateRoomType = async (roomType: RoomType) => {
+  try {
+    const response = await axiosInstance.put<RoomType>(`/admin/roomtypes/${roomType.id}`, roomType)
+    return response.data
+  } catch (error) {
+    console.error('Error updating room type:', error)
+    throw error
+  }
+}
+
+export const getSelectorImagesByRoomType = (roomType: RoomType) => {
+  return roomType.galleriaImmagini.map(
+    (image) =>
+      ({
+        src: `${import.meta.env.VITE_BACKEND_IMAGES_URL}/roomtypes/${image.path_immagine}`,
+        position: image.posizione,
+      }) as SelectorImage,
   )
 }
