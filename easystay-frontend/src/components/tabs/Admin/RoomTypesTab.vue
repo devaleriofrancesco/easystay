@@ -6,6 +6,18 @@
     :aria-labelledby="`${tab.id}-list`"
   >
     <div>
+      <button
+        data-bs-toggle="modal"
+        :data-bs-target="`#editRoomTypeModal-0`"
+        class="mb-3 btn btn-cta-mini"
+      >
+        Aggiungi nuovo tipo stanza
+      </button>
+
+      <div v-if="newRoomType">
+        <RoomTypeModal ref="newRoomTypeRef" :roomType="newRoomType" :key="newModalComponentKey" />
+      </div>
+
       <div v-for="(roomType, index) in roomTypes" :key="index" class="card w-75 mb-3">
         <div class="card-body">
           <h5 class="card-title">{{ roomType.nome }}</h5>
@@ -20,7 +32,9 @@
             >
               Modifica
             </button>
-            <button class="btn btn-danger">Elimina</button>
+            <button @click.prevent="deleteRoomType(roomType)" class="btn btn-danger">
+              Elimina
+            </button>
           </div>
         </div>
 
@@ -34,8 +48,11 @@
 <script lang="ts">
 import { onMounted, ref } from 'vue'
 import type { RoomType } from '@/interfaces/roomtype.ts'
-import { getRoomTypes } from '@/services/roomTypeService.ts'
+import { deleteRoomType, getNewRoomType, getRoomTypes } from '@/services/roomTypeService.ts'
 import RoomTypeModal from '@/components/modals/RoomTypeModal.vue'
+import showToast from '@/services/toaster.ts'
+import { AxiosError } from 'axios'
+import { emitter } from '@/services/mitt.ts'
 
 export default {
   name: 'RoomTypesTab',
@@ -52,13 +69,49 @@ export default {
   },
   setup() {
     const roomTypes = ref<RoomType[]>([])
+    const newRoomType = ref<RoomType>()
+
+    const retrieveNewRoomType = async () => {
+      newRoomType.value = await getNewRoomType()
+    }
 
     const getAllRoomTypes = async () => {
       roomTypes.value = await getRoomTypes()
     }
 
+    emitter.on('room-type-saved', () => {
+      getAllRoomTypes()
+    })
+
     onMounted(getAllRoomTypes)
-    return { roomTypes, getAllRoomTypes }
+    onMounted(retrieveNewRoomType)
+    return { roomTypes, getAllRoomTypes, newRoomType, retrieveNewRoomType }
+  },
+  data() {
+    return {
+      newModalComponentKey: 1,
+    }
+  },
+  methods: {
+    async deleteRoomType(roomType: RoomType) {
+      try {
+        await deleteRoomType(roomType)
+        await this.getAllRoomTypes()
+        showToast('Tipo stanza eliminato correttamente', 'success')
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          showToast(error.response?.data.detail, 'error')
+        }
+      }
+    },
+    resetNewModalComponentKey() {
+      this.retrieveNewRoomType().then(() => {
+        this.newModalComponentKey += 1
+      })
+    },
+  },
+  mounted() {
+    document.addEventListener('hidden.bs.modal', this.resetNewModalComponentKey)
   },
 }
 </script>

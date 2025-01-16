@@ -15,6 +15,7 @@
       Aggiungi immagine
       <input
         type="file"
+        @click="resetValue"
         @change="uploadImage"
         accept="image/*"
         :id="`image-selector__input-${roomType.id}`"
@@ -62,6 +63,10 @@ export default {
         this.images.push({ src: e.target!.result as string, position: this.images.length + 1 })
       }
       reader.readAsDataURL(file)
+    },
+    resetValue(event: Event) {
+      const element = event.target as HTMLInputElement
+      element.value = ''
     },
     deleteImage(imagePosition: number) {
       if (this.images.length === 1) {

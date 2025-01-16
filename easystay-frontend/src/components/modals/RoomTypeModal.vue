@@ -11,7 +11,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
-            Modifica tipo camera {{ roomTypeModel.nome }}
+            {{ roomTypeModel.id > 0 ? 'Modifica' : 'Crea' }} tipo camera {{ roomTypeModel.nome }}
           </h1>
           <button
             type="button"
@@ -28,6 +28,7 @@
                 type="text"
                 class="form-control"
                 id="roomTypeName"
+                required
                 v-model="roomTypeModel.nome"
               />
             </div>
@@ -36,6 +37,7 @@
               <textarea
                 class="form-control"
                 id="roomTypeDescription"
+                required
                 v-model="roomTypeModel.descrizione"
               ></textarea>
             </div>
@@ -44,6 +46,7 @@
               <input
                 type="number"
                 class="form-control"
+                required
                 id="roomTypePrice"
                 v-model="roomTypeModel.prezzo"
               />
@@ -54,6 +57,7 @@
                 type="number"
                 class="form-control"
                 id="squareMeters"
+                required
                 v-model="roomTypeModel.metriQuadri"
               />
             </div>
@@ -63,6 +67,7 @@
                 type="number"
                 class="form-control"
                 id="roomTypeBeds"
+                required
                 v-model="roomTypeModel.numeroPostiLetto"
               />
             </div>
@@ -72,6 +77,7 @@
                 type="number"
                 class="form-control"
                 id="adults"
+                required
                 v-model="roomTypeModel.numeroAdulti"
               />
             </div>
@@ -81,6 +87,7 @@
                 type="number"
                 class="form-control"
                 id="children"
+                required
                 v-model="roomTypeModel.numeroBambini"
               />
             </div>
@@ -111,11 +118,12 @@
 import ImageSelector from '@/components/ImageSelector.vue'
 import type { RoomType, ServizioWrapper } from '@/interfaces/roomtype.ts'
 import { onMounted, ref } from 'vue'
-import { updateRoomType } from '@/services/roomTypeService.ts'
+import { createRoomType, updateRoomType } from '@/services/roomTypeService.ts'
 import { Modal } from 'bootstrap'
 import showToast from '@/services/toaster.ts'
 import { getAvailableServicesByRoomTypeId } from '@/services/serviziService.ts'
 import { AxiosError } from 'axios'
+import { emitter } from '@/services/mitt.ts'
 
 export interface SelectedServiceCheckbox extends ServizioWrapper {
   checked: boolean
@@ -174,9 +182,19 @@ export default {
         return
       }
       this.roomTypeModel.servizi = this.checkedServices
+
+      if (!this.roomTypeModel.galleriaImmagini.length) {
+        showToast("Inserire almeno un'immagine", 'warning')
+        return
+      }
+
       try {
-        this.roomTypeModel = await updateRoomType(this.roomTypeModel)
+        this.roomTypeModel =
+          this.roomTypeModel.id > 0
+            ? await updateRoomType(this.roomTypeModel)
+            : await createRoomType(this.roomTypeModel)
         this.modalRef?.hide()
+        emitter.emit('room-type-saved', this.roomTypeModel)
         showToast('Tipo camera aggiornato con successo', 'success')
       } catch (e) {
         if (e instanceof AxiosError) {
