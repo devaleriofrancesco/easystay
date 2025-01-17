@@ -92,9 +92,9 @@
         <nav aria-label="Navigazione">
           <ul class="pagination">
             <li
-              v-for="(index, i) in totalPages"
+              v-for="index in totalPages"
               :key="index"
-              :class="`page-item ${index === i + 1 ? 'active' : ''}`"
+              :class="`page-item ${currentPage == index ? 'active' : ''}`"
             >
               <a @click.prevent="onPageSelectorSelected(index)" class="page-link" href="#">{{
                 index
