@@ -93,12 +93,39 @@
             </div>
             <div class="mb-3">
               <label for="associatedServices" class="form-label"> Servizi associati </label>
-              <ul>
-                <li v-for="service in checkedServices" :key="service.servizio.id">
-                  <input type="checkbox" v-model="service.checked" :value="service.servizio.id" />
-                  {{ service.servizio.nome }}
-                </li>
-              </ul>
+
+              <div
+                v-for="service in checkedServices"
+                :key="service.servizio.id"
+                class="row g-3 align-items-center"
+              >
+                <div class="col-auto">
+                  <label
+                    :for="`modalServiceCheckbox-${roomTypeModel.id}-${service.servizio.id}`"
+                    class="col-form-label"
+                    >{{ service.servizio.nome }}</label
+                  >
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="checkbox"
+                    v-model="service.checked"
+                    :value="service.servizio.id"
+                    :id="`modalServiceCheckbox-${roomTypeModel.id}-${service.servizio.id}`"
+                    class="form-check-input"
+                  />
+                </div>
+                <div class="col-auto">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Quantità x servizio"
+                    :required="service.checked"
+                    v-model="service.qty"
+                  />
+                </div>
+                <hr />
+              </div>
             </div>
             <div class="mb-3">
               <label class="mb-3">Immagini</label>
