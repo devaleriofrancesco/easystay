@@ -16,7 +16,7 @@ import type { Tab } from '@/interfaces/tab.ts'
 import type { User } from '@/interfaces/user.ts'
 import { useUsers } from '@/stores/user.ts'
 import { ref } from 'vue'
-import RegisterForm from '@/components/RegisterForm.vue'
+import RegisterForm from '@/components/forms/RegisterForm.vue'
 
 export default {
   name: 'ProfileTab',

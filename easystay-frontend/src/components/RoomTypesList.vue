@@ -34,7 +34,7 @@
 import { onMounted, ref } from 'vue'
 import { getRoomTypeImages, getRoomTypes } from '@/services/roomTypeService.ts'
 import type { RoomType } from '@/interfaces/roomtype.ts'
-import ImageSlider from '@/components/ImageSlider.vue'
+import ImageSlider from '@/components/sliders/ImageSlider.vue'
 
 export default {
   name: 'RoomTypesList',

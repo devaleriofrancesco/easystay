@@ -26,7 +26,7 @@ import type { Booking } from '@/interfaces/booking.ts'
 import { onMounted, ref } from 'vue'
 import { deleteBooking, getBookings, updateBooking } from '@/services/bookingService.ts'
 import showToast from '@/services/toaster.ts'
-import BookingCard from '@/components/BookingCard.vue'
+import BookingCard from '@/components/cards/BookingCard.vue'
 import { AxiosError } from 'axios'
 
 export default {

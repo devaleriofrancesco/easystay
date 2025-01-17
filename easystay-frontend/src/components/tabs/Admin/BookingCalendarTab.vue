@@ -58,7 +58,7 @@ import {
   getBookingsByDatesAndUser,
 } from '@/services/bookingService.ts'
 import showToast from '@/services/toaster.ts'
-import BookingCard from '@/components/BookingCard.vue'
+import BookingCard from '@/components/cards/BookingCard.vue'
 import debounce from 'debounce'
 import _ from 'lodash'
 

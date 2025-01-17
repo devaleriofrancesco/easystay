@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import ImageSlider from '@/components/ImageSlider.vue'
+import ImageSlider from '@/components/sliders/ImageSlider.vue'
 import type { Image } from '@/interfaces/Image.ts'
 
 export default {

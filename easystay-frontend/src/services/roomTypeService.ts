@@ -1,7 +1,7 @@
 import type { RoomType } from '@/interfaces/roomtype.ts'
 import axiosInstance from '@/services/axios.ts'
 import type { Image } from '@/interfaces/Image.ts'
-import type { SelectorImage } from '@/components/ImageSelector.vue'
+import type { SelectorImage } from '@/components/forms/ImageSelector.vue'
 
 export const getRoomTypes = async () => {
   try {

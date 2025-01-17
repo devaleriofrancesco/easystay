@@ -142,7 +142,7 @@
   </div>
 </template>
 <script lang="ts">
-import ImageSelector from '@/components/ImageSelector.vue'
+import ImageSelector from '@/components/forms/ImageSelector.vue'
 import type { RoomType, ServizioWrapper } from '@/interfaces/roomtype.ts'
 import { onMounted, ref } from 'vue'
 import { createRoomType, updateRoomType } from '@/services/roomTypeService.ts'

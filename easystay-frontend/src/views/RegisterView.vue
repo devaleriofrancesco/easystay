@@ -7,7 +7,7 @@
   </main>
 </template>
 <script lang="ts">
-import RegisterForm from '@/components/RegisterForm.vue'
+import RegisterForm from '@/components/forms/RegisterForm.vue'
 import type { User } from '@/interfaces/user.ts'
 import { useUsers } from '@/stores/user.ts'
 export default {

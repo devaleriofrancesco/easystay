@@ -1,13 +1,27 @@
 <template>
   <main>
-    <ImageSlider slider-id="page-slider" :images="images" :show-controls="false" :show-indicators="false" />
+    <ImageSlider
+      slider-id="page-slider"
+      :images="images"
+      :show-controls="false"
+      :show-indicators="false"
+    />
     <div class="container mt-3 text-center">
-      <hr/>
+      <hr />
       <h3>CAMERE</h3>
       <h4>Un mix armonioso di stile, comfort e praticità.</h4>
-      <p>Le Camere Classic offrono la soluzione perfetta per un soggiorno breve, sia per lavoro che per piacere.</p>
-      <p>Gli ambienti, caratterizzati da tonalità soft e da un’atmosfera accogliente, creano uno spazio ideale per rilassarsi.</p>
-      <p>Ogni camera, curata nei dettagli e arredata con eleganza, dispone di bagno privato con doccia o vasca e di tutti i servizi più moderni per garantire un’esperienza confortevole.</p>
+      <p>
+        Le Camere Classic offrono la soluzione perfetta per un soggiorno breve, sia per lavoro che
+        per piacere.
+      </p>
+      <p>
+        Gli ambienti, caratterizzati da tonalità soft e da un’atmosfera accogliente, creano uno
+        spazio ideale per rilassarsi.
+      </p>
+      <p>
+        Ogni camera, curata nei dettagli e arredata con eleganza, dispone di bagno privato con
+        doccia o vasca e di tutti i servizi più moderni per garantire un’esperienza confortevole.
+      </p>
       <hr />
     </div>
     <RoomTypesList />
@@ -24,7 +38,7 @@
 }
 </style>
 <script lang="ts">
-import ImageSlider from '@/components/ImageSlider.vue'
+import ImageSlider from '@/components/sliders/ImageSlider.vue'
 import RoomTypesList from '@/components/RoomTypesList.vue'
 
 export default {
