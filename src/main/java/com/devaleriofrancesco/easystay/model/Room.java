@@ -8,17 +8,17 @@ public class Room {
 
     @Id
     @Column(name = "numero_stanza")
-    private long numeroStanza;
+    private Long numeroStanza;
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType tipoStanza;
     private boolean prenotabile;
 
-    public long getNumeroStanza() {
+    public Long getNumeroStanza() {
         return numeroStanza;
     }
 
-    public void setNumeroStanza(long numeroStanza) {
+    public void setNumeroStanza(Long numeroStanza) {
         this.numeroStanza = numeroStanza;
     }
 

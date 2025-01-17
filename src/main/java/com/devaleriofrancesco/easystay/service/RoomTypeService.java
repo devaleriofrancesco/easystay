@@ -32,7 +32,7 @@ public class RoomTypeService {
 
 
     public List<RoomType> findAll() {
-        return roomTypeRepository.findAll();
+        return roomTypeRepository.findAllByOrderByIdAsc();
     }
 
     public RoomType findById(Integer id) {

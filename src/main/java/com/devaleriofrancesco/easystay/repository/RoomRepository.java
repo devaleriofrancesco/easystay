@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
@@ -45,6 +46,11 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("checkIn") LocalDate checkIn,
             @Param("checkOut") LocalDate checkOut,
             @Param("roomType") RoomType roomType
+    );
+
+    // get all rooms ordered by numero stanza
+    Page<Room> findAllByOrderByNumeroStanzaAsc(
+            Pageable pageable
     );
 
 }
