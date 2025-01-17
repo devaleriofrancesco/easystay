@@ -18,8 +18,25 @@ public class ServiziService {
     private final ServiziRepository serviziRepository;
     private final RoomTypeService roomTypeService;
 
-    public List<RoomTypeServizi> getAllServices() {
-        return roomTypeServiziRepository.findAll();
+    public List<Servizi> getAllServices() {
+        return serviziRepository.findAll();
+    }
+
+    // update service
+    public Servizi updateService(Integer id, Servizi servizi) {
+        Servizi service = serviziRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Servizio non trovato"));
+        servizi.setId(service.getId());
+        return serviziRepository.save(servizi);
+    }
+
+    // create service
+    public Servizi createService(Servizi servizi) {
+        return serviziRepository.save(servizi);
+    }
+
+    // delete service
+    public void deleteService(Integer id) {
+        serviziRepository.deleteById(id);
     }
 
     public List<RoomTypeServizi> getAllServicesForRoomType(Integer id) {

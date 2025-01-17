@@ -141,6 +141,10 @@ public class RoomTypeService {
     }
 
     public void deleteRoomType(Integer id) {
+        // check if at least one room type exists
+        if (roomTypeRepository.count() == 1) {
+            throw new IllegalArgumentException("Impossibile eliminare l'ultima tipologia di stanza");
+        }
         roomTypeRepository.deleteById(id);
     }
 
