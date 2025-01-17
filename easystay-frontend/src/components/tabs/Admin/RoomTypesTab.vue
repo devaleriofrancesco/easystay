@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import type { RoomType } from '@/interfaces/roomtype.ts'
 import { deleteRoomType, getNewRoomType, getRoomTypes } from '@/services/roomTypeService.ts'
 import RoomTypeModal from '@/components/modals/RoomTypeModal.vue'
@@ -81,6 +81,22 @@ export default {
 
     emitter.on('room-type-saved', () => {
       getAllRoomTypes()
+    })
+
+    // when a service is deleted, we need to refresh the list
+    emitter.on('service-deleted', () => {
+      roomTypes.value = []
+      nextTick(() => {
+        getAllRoomTypes()
+      })
+    })
+
+    // when a service is saved, we need to refresh the list
+    emitter.on('service-saved', () => {
+      roomTypes.value = []
+      nextTick(() => {
+        getAllRoomTypes()
+      })
     })
 
     onMounted(getAllRoomTypes)

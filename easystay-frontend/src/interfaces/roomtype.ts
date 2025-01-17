@@ -7,7 +7,6 @@ export interface GalleriaImmagine {
 export interface Servizio {
   id: number
   nome: string
-  qty: number
   prezzoAddizionale: number
 }
 

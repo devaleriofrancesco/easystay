@@ -216,12 +216,14 @@ export default {
       }
 
       try {
-        this.roomTypeModel =
-          this.roomTypeModel.id > 0
-            ? await updateRoomType(this.roomTypeModel)
-            : await createRoomType(this.roomTypeModel)
+        if (this.roomTypeModel.id) {
+          await updateRoomType(this.roomTypeModel)
+        } else {
+          await createRoomType(this.roomTypeModel)
+        }
+
         this.modalRef?.hide()
-        emitter.emit('room-type-saved', this.roomTypeModel)
+        emitter.emit('room-type-saved')
         showToast('Tipo camera aggiornato con successo', 'success')
       } catch (e) {
         if (e instanceof AxiosError) {
