@@ -1,6 +1,6 @@
 package com.devaleriofrancesco.easystay.initialization;
 
-import com.devaleriofrancesco.easystay.service.RoomTypeService;
+import com.devaleriofrancesco.easystay.roomtype.service.RoomTypeService;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
