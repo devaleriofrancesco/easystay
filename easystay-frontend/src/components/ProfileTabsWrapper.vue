@@ -40,6 +40,8 @@ import ProfileTab from './tabs/ProfileTab.vue'
 import BookingCalendarTab from './tabs/Admin/BookingCalendarTab.vue'
 import { useUsers } from '@/stores/user.ts'
 import RoomTypesTab from './tabs/Admin/RoomTypesTab.vue'
+import ServicesTab from './tabs/Admin/ServicesTab.vue'
+import RoomsTab from '@/components/tabs/Admin/RoomsTab.vue'
 
 export default {
   name: 'ProfileTabsWrapper',
@@ -48,6 +50,8 @@ export default {
     ProfileTab,
     BookingCalendarTab,
     RoomTypesTab,
+    ServicesTab,
+    RoomsTab,
   },
   props: {
     tabs: {

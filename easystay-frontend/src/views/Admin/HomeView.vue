@@ -26,6 +26,16 @@ export default {
           name: 'Tipi di stanze',
           component: 'RoomTypesTab',
         },
+        {
+          id: 'services',
+          name: 'Servizi disponibili',
+          component: 'ServicesTab',
+        },
+        {
+          id: 'rooms',
+          name: 'Stanze',
+          component: 'RoomsTab',
+        },
       ],
     }
   },
