@@ -1,6 +1,8 @@
 package com.devaleriofrancesco.easystay.roomtype.model;
 
 import com.devaleriofrancesco.easystay.gallery.model.GalleriaImmagini;
+import com.devaleriofrancesco.easystay.room.model.Room;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -28,6 +30,10 @@ public class RoomType {
     @OneToMany(mappedBy = "roomType", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonProperty("servizi")
     private List<RoomTypeServizi> roomTypeServizi;
+
+    @OneToMany(mappedBy = "tipoStanza", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    private List<Room> stanze;
 
     public int getId() {
         return id;

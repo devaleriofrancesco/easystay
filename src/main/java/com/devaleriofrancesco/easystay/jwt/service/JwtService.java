@@ -4,11 +4,14 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +20,8 @@ import java.util.function.Function;
 @Component
 public class JwtService {
 
-    @Value("${security.jwt.secret-key}")
-    private String SECRET;
+    @Value("${security.jwt.secret-key-path}")
+    private String secretKeyPath;
 
     @Value("${security.jwt.expiration-time}")
     private long jwtExpiration;
@@ -44,6 +47,12 @@ public class JwtService {
 
     // Get the signing key for JWT token
     private SecretKey getSignKey() {
+        String SECRET;
+        try {
+            SECRET = new String(Files.readAllBytes(Paths.get(secretKeyPath)));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to read JWT secret key from file", e);
+        }
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }

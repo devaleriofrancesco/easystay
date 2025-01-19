@@ -1,6 +1,8 @@
 package com.devaleriofrancesco.easystay.room.model;
 
 import com.devaleriofrancesco.easystay.roomtype.model.RoomType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class Room {
     private Long numeroStanza;
     @ManyToOne
     @JoinColumn(name = "room_type_id")
+    @JsonManagedReference
     private RoomType tipoStanza;
     private boolean prenotabile;
 
