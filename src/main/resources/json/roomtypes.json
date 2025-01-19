@@ -10,14 +10,6 @@
       {
         "path_immagine": "single-room-1.jpg",
         "posizione": 1
-      },
-      {
-        "path_immagine": "single-room-2.jpg",
-        "posizione": 2
-      },
-      {
-        "path_immagine": "single-room-3.jpg",
-        "posizione": 3
       }
     ],
     "servizi": [
@@ -55,14 +47,6 @@
       {
         "path_immagine": "double-room-1.jpg",
         "posizione": 1
-      },
-      {
-        "path_immagine": "double-room-2.jpg",
-        "posizione": 2
-      },
-      {
-        "path_immagine": "double-room-3.jpg",
-        "posizione": 3
       }
     ],
     "servizi": [
@@ -72,58 +56,6 @@
           "prezzoAddizionale": 0.0
         },
         "qty": 1
-      },
-      {
-        "servizio": {
-          "nome": "TV",
-          "prezzoAddizionale": 0.0
-        },
-        "qty": 1
-      },
-      {
-        "servizio": {
-          "nome": "Wi-Fi",
-          "prezzoAddizionale": 0.0
-        },
-        "qty": 1
-      },
-      {
-        "servizio": {
-          "nome": "Minibar",
-          "prezzoAddizionale": 0.0
-        },
-        "qty": 1
-      }
-    ]
-  },
-  {
-    "nome": "Classic Twin Room",
-    "descrizione": "La Classic Twin Room, pensata per chi desidera condividere gli spazi, offre la comodità di due letti singoli in un’atmosfera accogliente e confortevole e un bagno dotato di vasca o doccia",
-    "prezzo": 100.0,
-    "metriQuadri": 22,
-    "numeroAdulti": 2,
-    "numeroBambini": 0,
-    "galleriaImmagini": [
-      {
-        "path_immagine": "twin-room-1.jpg",
-        "posizione": 1
-      },
-      {
-        "path_immagine": "twin-room-2.jpg",
-        "posizione": 2
-      },
-      {
-        "path_immagine": "twin-room-3.jpg",
-        "posizione": 3
-      }
-    ],
-    "servizi": [
-      {
-        "servizio": {
-          "nome": "Letto singolo",
-          "prezzoAddizionale": 0.0
-        },
-        "qty": 2
       },
       {
         "servizio": {
@@ -159,14 +91,6 @@
       {
         "path_immagine": "triple-room-1.jpg",
         "posizione": 1
-      },
-      {
-        "path_immagine": "triple-room-2.jpg",
-        "posizione": 2
-      },
-      {
-        "path_immagine": "triple-room-3.jpg",
-        "posizione": 3
       }
     ],
     "servizi": [
