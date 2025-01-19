@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="main-container">
     <ImageSlider :images="images" />
     <div class="container mt-5">
       <hr />
@@ -42,22 +42,23 @@ export default {
     ImageSlider,
   },
   data() {
+    const viteImagesUrl = import.meta.env.VITE_BACKEND_IMAGES_URL
     return {
       images: <Image[]>[
         {
-          src: 'https://image-tc.galaxy.tf/wijpeg-z3e5ko7480vw6p0paqsuh7l7/1-homepage.jpg?width=1920',
+          src: `${viteImagesUrl}/homepage/ingresso.webp`,
           title: 'Ingresso hotel',
           description: 'L’ingresso dell’hotel EasyStay.',
         },
         {
-          src: 'https://image-tc.galaxy.tf/wijpeg-2eng663e2pw1raqzcxpdhqym/cosmohotelpalace-16-simonabrunoph-suite.jpg?width=1920',
-          title: 'Family Room',
-          description: 'Family room con stanze comunicanti',
+          src: `${viteImagesUrl}/homepage/single-room.webp`,
+          title: 'Single Room',
+          description: 'Camera singola con letto matrimoniale',
         },
         {
-          src: 'https://image-tc.galaxy.tf/wijpeg-fi5usdgc3yeyu6ozlbgiq3k3/cosmohotelpalace-7-simonabrunoph-classic-double-room.jpg?width=1920',
-          title: 'Double Room',
-          description: 'Camera doppia con letto matrimoniale',
+          src: `${viteImagesUrl}/homepage/family-room.webp`,
+          title: 'Family Room',
+          description: 'Camera familiare con letto matrimoniale e due letti singoli',
         },
       ],
     }
