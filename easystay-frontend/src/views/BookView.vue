@@ -24,10 +24,10 @@
   </main>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { DatePicker } from 'v-calendar'
 import 'v-calendar/style.css'
-import { onMounted, ref } from 'vue'
 import { getRoomTypes } from '@/services/roomTypeService.ts'
 import type { RoomType } from '@/interfaces/roomtype.ts'
 import RoomTypeSlider from '@/components/sliders/RoomTypeSlider.vue'
@@ -36,69 +36,53 @@ import { useBooking } from '@/stores/booking.ts'
 import { AxiosError } from 'axios'
 import router from '@/router'
 
-export default {
-  name: 'BookView',
-  components: {
-    RoomTypeSlider,
-    DatePicker,
-  },
-  setup() {
-    const store = useBooking()
-    const range = ref({
-      start: store.getCheckInDate,
-      end: store.getCheckOutDate,
-    })
+const store = useBooking()
+const range = ref<{ start: Date; end: Date }>({
+  start: store.getCheckInDate,
+  end: store.getCheckOutDate,
+})
+const roomTypes = ref<RoomType[]>([])
 
-    const roomTypes = ref<RoomType[]>([])
-    const fetchRoomTypes = async () => {
-      try {
-        roomTypes.value = await getRoomTypes()
-      } catch (error) {
-        console.log('Failed to fetch room types:', error)
-      }
-    }
-
-    onMounted(fetchRoomTypes)
-    return {
-      range,
-      roomTypes,
-    }
-  },
-  methods: {
-    bookRoom() {
-      const store = useBooking()
-
-      if (!this.range.start || !this.range.end) {
-        showToast('Seleziona le date di check-in e check-out', 'error')
-        return
-      }
-
-      if (!store.getSelectedRoomTypeId) {
-        showToast('Seleziona il tipo di camera', 'error')
-        return
-      }
-
-      store.setCheckInDate(this.range.start)
-      store.setCheckOutDate(this.range.end)
-
-      store
-        .bookRoom()
-        .then(() => {
-          showToast('Camera prenotata con successo', 'success')
-          router.push({ name: 'profilo' }).then(() => {
-            store.$reset()
-          })
-        })
-        .catch((e) => {
-          if (e instanceof AxiosError) {
-            showToast(e.response?.data.detail, 'error')
-          } else {
-            showToast('Errore durante la prenotazione', 'error')
-          }
-        })
-    },
-  },
+const fetchRoomTypes = async (): Promise<void> => {
+  try {
+    roomTypes.value = await getRoomTypes()
+  } catch (error) {
+    console.log('Failed to fetch room types:', error)
+  }
 }
+
+const bookRoom = () => {
+  if (!range.value.start || !range.value.end) {
+    showToast('Seleziona le date di check-in e check-out', 'error')
+    return
+  }
+
+  if (!store.getSelectedRoomTypeId) {
+    showToast('Seleziona il tipo di camera', 'error')
+    return
+  }
+
+  store.setCheckInDate(range.value.start)
+  store.setCheckOutDate(range.value.end)
+
+  store
+    .bookRoom()
+    .then(() => {
+      showToast('Camera prenotata con successo', 'success')
+      router.push({ name: 'profilo' }).then(() => {
+        store.$reset()
+      })
+    })
+    .catch((e) => {
+      if (e instanceof AxiosError) {
+        showToast(e.response?.data.detail, 'error')
+      } else {
+        showToast('Errore durante la prenotazione', 'error')
+      }
+    })
+}
+
+onMounted(fetchRoomTypes)
 </script>
 
 <style lang="scss">
