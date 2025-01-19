@@ -43,7 +43,7 @@
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form @submit.prevent="saveService(selectedService)">
+            <form @submit.prevent="saveService">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">
                   Modifica servizio {{ selectedService.nome }}

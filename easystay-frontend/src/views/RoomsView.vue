@@ -40,6 +40,7 @@
 <script lang="ts">
 import ImageSlider from '@/components/sliders/ImageSlider.vue'
 import RoomTypesList from '@/components/RoomTypesList.vue'
+import type { Image } from '@/interfaces/Image.ts'
 
 export default {
   components: {
@@ -53,7 +54,8 @@ export default {
           src: 'https://image-tc.galaxy.tf/wijpeg-fi5usdgc3yeyu6ozlbgiq3k3/cosmohotelpalace-7-simonabrunoph-classic-double-room.jpg?width=1920',
           title: '',
           description: '',
-        },
+          posizione: 1,
+        } as Image,
       ],
     }
   },
