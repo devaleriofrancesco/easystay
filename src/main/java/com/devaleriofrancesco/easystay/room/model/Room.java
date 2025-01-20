@@ -14,7 +14,6 @@ public class Room {
     private Long numeroStanza;
     @ManyToOne
     @JoinColumn(name = "room_type_id")
-    @JsonManagedReference
     private RoomType tipoStanza;
     private boolean prenotabile;
 

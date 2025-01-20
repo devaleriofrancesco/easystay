@@ -157,11 +157,10 @@ public class RoomTypeService {
         roomTypeRepository.deleteById(id);
     }
 
-    public void bulkInsertFromJson(String jsonPath) throws IOException {
+    public void bulkInsertFromJson(InputStream inputStream) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         TypeReference<List<RoomType>> typeReference = new TypeReference<>() {
         };
-        InputStream inputStream = TypeReference.class.getResourceAsStream(jsonPath);
 
         List<RoomType> roomTypes = objectMapper.readValue(inputStream, typeReference);
         for (RoomType roomType : roomTypes) {
