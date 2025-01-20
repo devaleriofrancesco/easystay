@@ -16,7 +16,7 @@ public class RoomType {
     @Id
     @GeneratedValue
     @Column(name = "id_tipo_stanza")
-    private Integer id = 0;
+    private Integer id;
     private String nome;
     @Column(columnDefinition = "TEXT")
     private String descrizione;

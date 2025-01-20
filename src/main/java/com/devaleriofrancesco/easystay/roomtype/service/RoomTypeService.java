@@ -165,33 +165,32 @@ public class RoomTypeService {
         List<RoomType> roomTypes = objectMapper.readValue(inputStream, typeReference);
         for (RoomType roomType : roomTypes) {
 
-            // Persist servizi first
             List<RoomTypeServizi> serviziList = roomType.getRoomTypeServizi();
+            List<GalleriaImmagini> galleries = roomType.getGalleriaImmagini();
+
+            roomType.setRoomTypeServizi(List.of());
+            roomType.setGalleriaImmagini(List.of());
+            // Persist room type
+            roomTypeRepository.save(roomType);
+
+            // Persist servizi first
             if (serviziList != null) {
                 for (RoomTypeServizi roomTypeServizio : serviziList) {
                     Servizi servizio = roomTypeServizio.getServizio();
                     Servizi existingServizio = serviziRepository.findFirstByNome(servizio.getNome());
                     if (existingServizio == null) {
                         serviziRepository.save(servizio);
+                        roomTypeServizio.setServizio(servizio);
                     } else {
                         roomTypeServizio.setServizio(existingServizio);
                     }
-                }
-            }
 
-            // Persist room type
-            roomTypeRepository.save(roomType);
-
-            // Persist roomTypeServizi
-            if (serviziList != null) {
-                for (RoomTypeServizi roomTypeServizio : serviziList) {
                     roomTypeServizio.setRoomType(roomType);
                     roomTypeServiziRepository.save(roomTypeServizio);
                 }
             }
 
             // Persist galleries
-            List<GalleriaImmagini> galleries = roomType.getGalleriaImmagini();
             if (galleries != null) {
                 for (GalleriaImmagini gallery : galleries) {
                     gallery.setRoomType(roomType);

@@ -8,7 +8,7 @@
     "numeroBambini": 0,
     "galleriaImmagini": [
       {
-        "path_immagine": "single-room-1.jpg",
+        "path_immagine": "single-room-1.webp",
         "posizione": 1
       }
     ],
@@ -45,7 +45,7 @@
     "numeroBambini": 0,
     "galleriaImmagini": [
       {
-        "path_immagine": "double-room-1.jpg",
+        "path_immagine": "double-room-1.webp",
         "posizione": 1
       }
     ],
@@ -89,7 +89,7 @@
     "numeroBambini": 0,
     "galleriaImmagini": [
       {
-        "path_immagine": "triple-room-1.jpg",
+        "path_immagine": "triple-room-1.webp",
         "posizione": 1
       }
     ],
@@ -133,16 +133,8 @@
     "numeroBambini": 2,
     "galleriaImmagini": [
       {
-        "path_immagine": "family-room-1.jpg",
+        "path_immagine": "family-room-1.webp",
         "posizione": 1
-      },
-      {
-        "path_immagine": "family-room-2.jpg",
-        "posizione": 2
-      },
-      {
-        "path_immagine": "family-room-3.jpg",
-        "posizione": 3
       }
     ],
     "servizi": [
