@@ -12,7 +12,7 @@ EasyStay è un'applicazione web per la gestione di prenotazioni di camere d'albe
 
 Progetto di tesi per il corso di laurea in Informatica per le aziende digitali (L-31) presso l'Università telematica Unipegaso.
 
-Studente: Francesco Paolo De Valerio 
+Studente: Francesco Paolo De Valerio  
 Matricola: 0312200004
 
 ## Requisiti
