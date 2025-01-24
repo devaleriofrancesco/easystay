@@ -1,12 +1,19 @@
-# Progetto EasyStay
+<p align="center">
+  <img src="https://github.com/devaleriofrancesco/easystay/blob/master/easystay-frontend/src/assets/images/logo2.png?raw=true" alt="Sublime's custom image"/>
+</p>
+
+<p align="center">
+    <i>EasyStay - Soggiorni smart, prenotazioni Easy</i>
+</p>
 
 ## Overview
 
-EasyStay è un'applicazione web per la gestione di prenotazioni di alloggi. L'applicazione consente agli utenti di visualizzare e prenotare alloggi disponibili, nonché di gestire le proprie prenotazioni. Gli amministratori possono gestire gli alloggi e le prenotazioni degli utenti.
+EasyStay è un'applicazione web per la gestione di prenotazioni di camere d'albergo. L'applicazione consente agli utenti di visualizzare e prenotare camere disponibili, nonché di gestire le proprie prenotazioni. Gli amministratori possono gestire le camere e le prenotazioni degli utenti.
 
 Progetto di tesi per il corso di laurea in Informatica per le aziende digitali (L-31) presso l'Università telematica Unipegaso.
 
-Studente: Francesco Paolo De Valerio - Matricola 0312200004
+Studente: Francesco Paolo De Valerio 
+Matricola: 0312200004
 
 ## Requisiti
 - Java 23
@@ -17,11 +24,11 @@ Studente: Francesco Paolo De Valerio - Matricola 0312200004
 
 ## Backend (BE)
 
-Il backend è costruito utilizzando Spring Boot e fornisce un'API RESTful per la gestione degli alloggi, delle prenotazioni e degli utenti.
+Il backend è costruito utilizzando Spring Boot e fornisce un'API RESTful per la gestione delle camere, delle prenotazioni e degli utenti.
 La sicurezza è implementata tramite meccanismi di autenticazione e autorizzazione JWT.
 
 ## Frontend (FE)
-Il frontend è costruito utilizzando VueJS e consente agli utenti di visualizzare e prenotare alloggi. Gli amministratori possono gestire gli alloggi e le prenotazioni degli utenti.
+Il frontend è costruito utilizzando VueJS e consente agli utenti di visualizzare e prenotare le camere della struttura. Gli amministratori possono gestire gli alloggi e le prenotazioni degli utenti.
 
 ### Struttura del progetto
 
