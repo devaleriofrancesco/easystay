@@ -1,6 +1,7 @@
 package com.devaleriofrancesco.easystay.gallery.service;
 
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -17,9 +18,11 @@ public class ImageService {
         // Define the directory where the image will be saved
         String directory;
         try {
-            directory = ResourceUtils.getFile("classpath:static/images/roomtypes").getAbsolutePath() + "/";
+            directory = new ClassPathResource("static/images/roomtypes/").getFile().getAbsolutePath() + "/";
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Directory not found", e);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("errore in fase di inserimento immagine", e);
         }
 
         // Extract the image type (e.g., png, jpg) from the base64 string
