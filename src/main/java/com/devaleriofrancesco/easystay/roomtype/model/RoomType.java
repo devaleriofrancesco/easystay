@@ -114,4 +114,12 @@ public class RoomType {
     public void setRoomTypeServizi(List<RoomTypeServizi> roomTypeServizi) {
         this.roomTypeServizi = roomTypeServizi;
     }
+
+    public List<Room> getStanze() {
+        return stanze;
+    }
+
+    public void setStanze(List<Room> stanze) {
+        this.stanze = stanze;
+    }
 }

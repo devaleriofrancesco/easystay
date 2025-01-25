@@ -34,6 +34,28 @@
         },
         "qty": 1
       }
+    ],
+    "stanze": [
+      {
+        "numeroStanza": 101,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 102,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 103,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 104,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 105,
+        "prenotabile": true
+      }
     ]
   },
   {
@@ -78,6 +100,28 @@
         },
         "qty": 1
       }
+    ],
+    "stanze": [
+      {
+        "numeroStanza": 201,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 202,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 203,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 204,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 205,
+        "prenotabile": true
+      }
     ]
   },
   {
@@ -121,6 +165,28 @@
           "prezzoAddizionale": 0.0
         },
         "qty": 1
+      }
+    ],
+    "stanze": [
+      {
+        "numeroStanza": 301,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 302,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 303,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 304,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 305,
+        "prenotabile": true
       }
     ]
   },
@@ -172,6 +238,28 @@
           "prezzoAddizionale": 0.0
         },
         "qty": 2
+      }
+    ],
+    "stanze": [
+      {
+        "numeroStanza": 401,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 402,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 403,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 404,
+        "prenotabile": true
+      },
+      {
+        "numeroStanza": 405,
+        "prenotabile": true
       }
     ]
   }

@@ -3,6 +3,8 @@ package com.devaleriofrancesco.easystay.roomtype.service;
 import com.devaleriofrancesco.easystay.gallery.model.GalleriaImmagini;
 import com.devaleriofrancesco.easystay.gallery.service.ImageService;
 import com.devaleriofrancesco.easystay.gallery.repository.GalleriaImmaginiRepository;
+import com.devaleriofrancesco.easystay.room.model.Room;
+import com.devaleriofrancesco.easystay.room.service.RoomService;
 import com.devaleriofrancesco.easystay.roomtype.repository.RoomTypeRepository;
 import com.devaleriofrancesco.easystay.roomtype.repository.RoomTypeServiziRepository;
 import com.devaleriofrancesco.easystay.roomtype.model.RoomType;
@@ -23,13 +25,15 @@ import java.util.List;
 public class RoomTypeService {
     private final RoomTypeRepository roomTypeRepository;
     private final RoomTypeServiziRepository roomTypeServiziRepository;
+    private final RoomService roomService;
     private final GalleriaImmaginiRepository galleryRepository;
     private final ServiziRepository serviziRepository;
     private final ImageService imageService;
 
-    public RoomTypeService(RoomTypeRepository roomTypeRepository, RoomTypeServiziRepository roomTypeServiziRepository, GalleriaImmaginiRepository galleryRepository, ServiziRepository serviziRepository, ImageService imageService) {
+    public RoomTypeService(RoomTypeRepository roomTypeRepository, RoomTypeServiziRepository roomTypeServiziRepository, RoomService roomService, GalleriaImmaginiRepository galleryRepository, ServiziRepository serviziRepository, ImageService imageService) {
         this.roomTypeRepository = roomTypeRepository;
         this.roomTypeServiziRepository = roomTypeServiziRepository;
+        this.roomService = roomService;
         this.galleryRepository = galleryRepository;
         this.serviziRepository = serviziRepository;
         this.imageService = imageService;
@@ -196,6 +200,14 @@ public class RoomTypeService {
                     gallery.setRoomType(roomType);
                 }
                 galleryRepository.saveAll(galleries);
+            }
+
+            // persist rooms
+            if (roomType.getStanze() != null) {
+                for (Room room : roomType.getStanze()) {
+                    room.setTipoStanza(roomType);
+                    roomService.saveRoom(room);
+                }
             }
         }
     }
