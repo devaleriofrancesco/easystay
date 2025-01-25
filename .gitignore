@@ -32,4 +32,18 @@ build/
 ### VS Code ###
 .vscode/
 /jwt-secret.key
-.env
+
+/.env
+
+### Ignore uploads folder but add some images ###
+/uploads/images/*
+!/uploads/images/homepage/
+/uploads/images/homepage/*
+!/uploads/images/homepage/family-room.webp
+!/uploads/images/homepage/ingresso.webp
+!/uploads/images/homepage/single-room.webp
+!/uploads/images/roomtypes/
+/uploads/images/roomtypes/*
+!/uploads/images/roomtypes/single-room-1.webp
+!/uploads/images/roomtypes/double-room-1.webp
+!/uploads/images/roomtypes/family-room-1.webp

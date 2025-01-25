@@ -1,17 +1,20 @@
 package com.devaleriofrancesco.easystay.gallery.service;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.*;
 import java.util.Base64;
 
 @Service
 public class ImageService {
+
+    @Value("${images.upload.dir}")
+    private String uploadDir;
 
     // save image to file system from base64 data
     public String saveImage(String base64Image) throws FileNotFoundException {
@@ -26,39 +29,39 @@ public class ImageService {
         // Decode the base64 string
         byte[] imageBytes = Base64.getDecoder().decode(imageString);
 
-        URL resourceUrl = getClass().getClassLoader().getResource("static/images/roomtypes");
-        if (resourceUrl == null) {
-            throw new FileNotFoundException("Resource directory not found");
-        }
-
-        Path directoryPath = null;
+        Path uploadPath = getUploadPath();
+        Path filePath = uploadPath.resolve(fileName);
+        // Save the image to the file system
         try {
-            directoryPath = Paths.get(resourceUrl.toURI()).toAbsolutePath();
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
-        Path filePath = directoryPath.resolve(fileName);
-
-        try {
-            Files.write(filePath, imageBytes, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            Files.write(filePath, imageBytes);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException("Errore in fase di salvataggio immagine", e);
         }
 
         // Return the path of the saved image
         return fileName;
     }
 
+    private Path getUploadPath() throws FileNotFoundException {
+        // Get the project's root directory
+        String projectRoot = System.getProperty("user.dir");
+        // Resolve the uploads folder path
+        Path uploadPath =  Paths.get(projectRoot, uploadDir, "roomtypes");
+        // Create the uploads folder if it does not exist
+        if (!Files.exists(uploadPath)) {
+            try {
+                Files.createDirectories(uploadPath);
+            } catch (IOException e) {
+                throw new FileNotFoundException("Upload directory not found");
+            }
+        }
+        return uploadPath;
+    }
+
     // delete image from file system
     public boolean deleteImage(String imageName) {
         try {
-            URL resourceUrl = getClass().getClassLoader().getResource("static/images/roomtypes");
-            if (resourceUrl == null) {
-                throw new FileNotFoundException("Resource directory not found");
-            }
-
-            Path directoryPath = Paths.get(resourceUrl.toURI()).toAbsolutePath();
-            Path imagePath = directoryPath.resolve(imageName);
+            Path imagePath = getUploadPath().resolve(imageName);
             Files.deleteIfExists(imagePath);
             return true;
         } catch (Exception e) {
