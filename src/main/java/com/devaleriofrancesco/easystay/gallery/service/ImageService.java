@@ -1,7 +1,6 @@
 package com.devaleriofrancesco.easystay.gallery.service;
 
 
-
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
@@ -11,6 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
@@ -41,7 +41,7 @@ public class ImageService {
         byte[] imageBytes = Base64.getDecoder().decode(imageString);
 
         // Save the image to the file system
-        try (FileOutputStream fos = new FileOutputStream(absolutePath.toAbsolutePath() + FileSystems.getDefault().getSeparator() +  fileName)) {
+        try (FileOutputStream fos = new FileOutputStream(absolutePath.toAbsolutePath() + FileSystems.getDefault().getSeparator() + fileName)) {
             fos.write(imageBytes);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -52,17 +52,20 @@ public class ImageService {
     }
 
     // delete image from file system
-    public boolean deleteImage(String imagePath) {
+    public boolean deleteImage(String imageName) {
         try {
-            String directory = ResourceUtils.getFile("classpath:static/images/roomtypes").getAbsolutePath() + "/";
-            java.io.File file = new java.io.File(directory + imagePath);
-            if (file.delete()) {
-                return true;
+            URL resourceUrl = getClass().getClassLoader().getResource("static/images/roomtypes");
+            if (resourceUrl == null) {
+                throw new FileNotFoundException("Resource directory not found");
             }
-        } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException("Directory not found", e);
+
+            Path directoryPath = Paths.get(resourceUrl.toURI()).toAbsolutePath();
+            Path imagePath = directoryPath.resolve(imageName);
+            Files.deleteIfExists(imagePath);
+            return true;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Errore in fase di eliminazione immagine", e);
         }
-        return false;
     }
 
 }
