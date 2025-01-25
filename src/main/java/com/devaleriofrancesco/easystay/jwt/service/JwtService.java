@@ -20,8 +20,8 @@ import java.util.function.Function;
 @Component
 public class JwtService {
 
-    @Value("${security.jwt.secret-key-path}")
-    private String secretKeyPath;
+    @Value("${jwt.secret.key}")
+    private String SECRET;
 
     @Value("${security.jwt.expiration-time}")
     private long jwtExpiration;
@@ -47,12 +47,6 @@ public class JwtService {
 
     // Get the signing key for JWT token
     private SecretKey getSignKey() {
-        String SECRET;
-        try {
-            SECRET = new String(Files.readAllBytes(Paths.get(secretKeyPath)));
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to read JWT secret key from file", e);
-        }
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
