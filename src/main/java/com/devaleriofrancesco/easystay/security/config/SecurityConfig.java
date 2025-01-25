@@ -1,6 +1,7 @@
 package com.devaleriofrancesco.easystay.security.config;
 
 import com.devaleriofrancesco.easystay.jwt.filter.JwtAuthFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +31,9 @@ public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthFilter authFilter;
 
+    @Value("${cors.allowed.origins}")
+    private List<String> allowedOrigins;
+
     public SecurityConfig(UserDetailsService userDetailsService, JwtAuthFilter authFilter) {
         this.userDetailsService = userDetailsService;
         this.authFilter = authFilter;
@@ -57,7 +61,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost", "http://localhost:5173")); //or add * to allow all origins
+        configuration.setAllowedOrigins(allowedOrigins);
+        System.out.println(allowedOrigins);
         configuration.setAllowCredentials(true);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));

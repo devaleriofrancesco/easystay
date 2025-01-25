@@ -12,6 +12,7 @@ services:
       - postgres-db
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/easystay
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
