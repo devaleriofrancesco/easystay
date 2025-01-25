@@ -38,22 +38,4 @@ public class EasyStayApplication {
         };
     }
 
-    @PostConstruct
-    public void init() {
-        try {
-            String secretKeyPath = env.getProperty("security.jwt.secret-key-path", "jwt-secret.key");
-            Path path = Paths.get(secretKeyPath);
-            if (!Files.exists(path)) {
-                SecureRandom secureRandom = new SecureRandom();
-                byte[] key = new byte[32];
-                secureRandom.nextBytes(key);
-                String encodedKey = Base64.getEncoder().encodeToString(key);
-                Files.write(path, encodedKey.getBytes());
-                System.out.println("Generated JWT secret key and saved to " + secretKeyPath);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to generate JWT secret key", e);
-        }
-    }
-
 }
