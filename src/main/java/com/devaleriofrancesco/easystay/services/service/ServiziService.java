@@ -32,6 +32,7 @@ public class ServiziService {
 
     // create service
     public Servizi createService(Servizi servizi) {
+        servizi.setId(null);
         return serviziRepository.save(servizi);
     }
 

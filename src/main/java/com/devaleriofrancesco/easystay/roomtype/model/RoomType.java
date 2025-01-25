@@ -3,6 +3,7 @@ package com.devaleriofrancesco.easystay.roomtype.model;
 import com.devaleriofrancesco.easystay.gallery.model.GalleriaImmagini;
 import com.devaleriofrancesco.easystay.room.model.Room;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -32,11 +33,15 @@ public class RoomType {
     private List<RoomTypeServizi> roomTypeServizi;
 
     @OneToMany(mappedBy = "tipoStanza", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnore
     private List<Room> stanze;
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public double getPrezzoCompleto() {

@@ -50,6 +50,7 @@ public class RoomTypeService {
 
     public RoomType addRoomType(RoomTypeRequest roomType) {
         RoomType newRoomType = getNewRoomType();
+        newRoomType.setId(null);
         newRoomType.setNome(roomType.getNome());
         newRoomType.setDescrizione(roomType.getDescrizione());
         newRoomType.setMetriQuadri(roomType.getMetriQuadri());
@@ -144,6 +145,7 @@ public class RoomTypeService {
 
     public RoomType getNewRoomType() {
         RoomType roomType = new RoomType();
+        roomType.setId(0);
         roomType.setRoomTypeServizi(List.of());
         roomType.setGalleriaImmagini(List.of());
         return roomType;
