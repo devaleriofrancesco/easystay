@@ -217,7 +217,7 @@ export default {
 
       try {
         if (this.roomTypeModel.id) {
-          await updateRoomType(this.roomTypeModel)
+          this.roomTypeModel = await updateRoomType(this.roomTypeModel)
         } else {
           await createRoomType(this.roomTypeModel)
         }
