@@ -9,4 +9,6 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:23-jdk-alpine
 VOLUME /tmp
 COPY --from=build /app/target/*.jar app.jar
+# Copy uploads folder into /uploads
+ADD uploads /uploads
 ENTRYPOINT ["java","-jar","/app.jar"]
