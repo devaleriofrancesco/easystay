@@ -2,17 +2,12 @@ package com.devaleriofrancesco.easystay.gallery.service;
 
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Base64;
 
 @Service
@@ -20,15 +15,6 @@ public class ImageService {
 
     // save image to file system from base64 data
     public String saveImage(String base64Image) throws FileNotFoundException {
-        // Define the directory where the image will be saved
-        Path absolutePath;
-        try {
-            URL resourceUrl = getClass().getClassLoader().getResource("static/images/roomtypes/");
-            absolutePath = Paths.get(resourceUrl.toURI());
-        } catch (URISyntaxException e) {
-            throw new IllegalArgumentException("Errore in fase di caricamento immagine", e);
-        }
-
         // Extract the image type (e.g., png, jpg) from the base64 string
         String[] parts = base64Image.split(",");
         String imageString = parts[1];
@@ -40,9 +26,21 @@ public class ImageService {
         // Decode the base64 string
         byte[] imageBytes = Base64.getDecoder().decode(imageString);
 
-        // Save the image to the file system
-        try (FileOutputStream fos = new FileOutputStream(absolutePath.toAbsolutePath() + FileSystems.getDefault().getSeparator() + fileName)) {
-            fos.write(imageBytes);
+        URL resourceUrl = getClass().getClassLoader().getResource("static/images/roomtypes");
+        if (resourceUrl == null) {
+            throw new FileNotFoundException("Resource directory not found");
+        }
+
+        Path directoryPath = null;
+        try {
+            directoryPath = Paths.get(resourceUrl.toURI()).toAbsolutePath();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        Path filePath = directoryPath.resolve(fileName);
+
+        try {
+            Files.write(filePath, imageBytes, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

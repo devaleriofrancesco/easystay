@@ -27,15 +27,4 @@ public class EasyStayApplication {
         SpringApplication.run(EasyStayApplication.class, args);
     }
 
-    // expose static assets folder to the web
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-            }
-        };
-    }
-
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.FileNotFoundException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -71,6 +72,11 @@ public class GlobalExceptionHandler {
         if (exception instanceof DataIntegrityViolationException) {
             errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(400), exception.getMessage());
             errorDetail.setProperty("description", "Bad request");
+        }
+
+        if (exception instanceof FileNotFoundException) {
+            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(404), exception.getMessage());
+            errorDetail.setProperty("description", "File non trovato");
         }
 
         if (errorDetail == null) {
