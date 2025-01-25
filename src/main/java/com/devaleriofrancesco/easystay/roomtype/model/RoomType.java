@@ -32,6 +32,7 @@ public class RoomType {
     private List<RoomTypeServizi> roomTypeServizi;
 
     @OneToMany(mappedBy = "tipoStanza", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Room> stanze;
 
     public int getId() {
