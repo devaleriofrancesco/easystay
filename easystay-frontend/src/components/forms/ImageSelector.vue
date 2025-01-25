@@ -73,9 +73,13 @@ export default {
         showToast("Devi avere almeno un'immagine", 'error')
         return
       }
-      this.$props.roomType.galleriaImmagini.find(
-        (gallery) => gallery.posizione === imagePosition,
-      )!.posizione = -1
+
+      // mark the images for deletion
+      this.$props.roomType.galleriaImmagini.forEach((gallery) => {
+        if (gallery.posizione === imagePosition) {
+          gallery.posizione = -1
+        }
+      })
       this.images = this.images.filter((image) => image.position !== imagePosition)
     },
   },
