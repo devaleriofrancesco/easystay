@@ -28,15 +28,4 @@ public class EasyStayApplication {
         SpringApplication.run(EasyStayApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer webMvcConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                registry.addResourceHandler("/images/**")
-                        .addResourceLocations("file:" + System.getProperty("user.dir") + "/uploads/images/");
-            }
-        };
-    }
-
 }
