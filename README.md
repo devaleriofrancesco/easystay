@@ -15,6 +15,19 @@ Progetto di tesi per il corso di laurea in Informatica per le aziende digitali (
 Studente: Francesco Paolo De Valerio  
 Matricola: 0312200004
 
+## DEMO
+Una demo del sito web completo è stata pubblicata al seguente indirizzo:
+
+[EasyStay](https://easystay.francescodevalerio.com)
+
+Per accedere come amministratore, utilizzare le seguenti credenziali:
+- Email: admin@easystay.com
+- Password: admin
+
+Per accedere come utente, utilizzare le seguenti credenziali:
+- Email: utente@easystay.com
+- Password: utente
+
 ## Requisiti
 - Java 23
 - Apache Maven 3.9.9
