@@ -1,6 +1,8 @@
 package com.devaleriofrancesco.easystay.gallery.service;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +11,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Base64;
+import java.util.Objects;
 
 @Service
 public class ImageService {
 
     @Value("${images.upload.dir}")
-    private String uploadDir;
+    private static String uploadDir;
+    private static final String IMAGES = "images";
+    private static final String ROOMTYPES_DIR = "roomtypes";
+    private final Logger logger = LoggerFactory.getLogger(ImageService.class);
 
     // save image to file system from base64 data
     public String saveImage(String base64Image) throws FileNotFoundException {
@@ -29,7 +35,7 @@ public class ImageService {
         // Decode the base64 string
         byte[] imageBytes = Base64.getDecoder().decode(imageString);
 
-        Path uploadPath = getUploadPath();
+        Path uploadPath = getUploadPath(IMAGES, ROOMTYPES_DIR);
         Path filePath = uploadPath.resolve(fileName);
         // Save the image to the file system
         try {
@@ -42,12 +48,10 @@ public class ImageService {
         return fileName;
     }
 
-    private Path getUploadPath() throws FileNotFoundException {
-        // Get the project's root directory
-        String projectRoot = System.getProperty("user.dir");
-        // Resolve the uploads folder path
-        Path uploadPath =  Paths.get(projectRoot, uploadDir, "roomtypes");
-        // Create the uploads folder if it does not exist
+    public static Path getUploadPath(String... dirs) throws FileNotFoundException {
+        Path uploadPath;
+        uploadPath = Paths.get(Objects.requireNonNullElse(uploadDir, "uploads"), dirs);
+
         if (!Files.exists(uploadPath)) {
             try {
                 Files.createDirectories(uploadPath);
@@ -55,17 +59,18 @@ public class ImageService {
                 throw new FileNotFoundException("Upload directory not found");
             }
         }
-        return uploadPath;
+        return uploadPath.toAbsolutePath();
     }
 
     // delete image from file system
     public boolean deleteImage(String imageName) {
         try {
-            Path imagePath = getUploadPath().resolve(imageName);
+            Path imagePath = getUploadPath(IMAGES, ROOMTYPES_DIR).resolve(imageName);
             Files.deleteIfExists(imagePath);
             return true;
         } catch (Exception e) {
-            throw new IllegalArgumentException("Errore in fase di eliminazione immagine", e);
+            logger.error("Errore in fase di cancellazione immagine", e);
+            return false;
         }
     }
 
